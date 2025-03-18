@@ -1,5 +1,6 @@
 // On import le framework express
 const express = require("express");
+const path = require("path");
 
 // On créer l'application expressJs avec : app
 const app = express();
@@ -10,7 +11,6 @@ executionDB("requetes.sql");
 
 // On appele les routes
 
-
 // Acces au fichier du projet - css, image
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
@@ -20,10 +20,6 @@ app.use(express.json());
 app.get("/", (res, req, next) => {
     req.send("Binvenu dans le serveur");
     return;
-});
-
-app.get("/api/acceuil", (res, req) => {
-    req.json({ message: 'Hello from Node.js backend!' });
 });
 
 
