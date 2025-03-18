@@ -23,7 +23,7 @@ try {
   });
 } catch (error) {
   
-}
+} 
 
 
 module.exports = connection;

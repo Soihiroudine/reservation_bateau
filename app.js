@@ -4,6 +4,15 @@ const express = require("express");
 // On créer l'application expressJs avec : app
 const app = express();
 
+// on importe le fichier qui permet le changement dans notre base de donné
+const executionDB = require("./server/config/executeDB");
+
+try {
+    executionDB("requetes.sql"); 
+}catch (error) {
+    console.log(error);
+}
+
 // On appele les routes
 
 
