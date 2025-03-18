@@ -1,7 +1,10 @@
+-- Creation de la base de données (BDD)
 CREATE DATABASE IF NOT EXISTS sortie_bateau;
 
+-- On va se mettre dans la BDD
 USE sortie_bateau; 
 
+-- On va y ajouter des table
 CREATE TABLE IF NOT EXISTS client (
     idClient INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     nomClient VARCHAR(100) NOT NULL,
@@ -37,7 +40,6 @@ CREATE TABLE IF NOT EXISTS planning (
     idBateau INT NOT NULL,
     FOREIGN KEY (idBateau) REFERENCES bateau(idBateau)
 );
-
 
 CREATE TABLE IF NOT EXISTS reservation (
     idReservation INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
