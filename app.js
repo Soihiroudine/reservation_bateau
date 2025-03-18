@@ -6,12 +6,7 @@ const app = express();
 
 // on importe le fichier qui permet le changement dans notre base de donné
 const executionDB = require("./server/config/executeDB");
-
-try {
-    executionDB("requetes.sql"); 
-}catch (error) {
-    console.log(error);
-}
+executionDB("requetes.sql");
 
 // On appele les routes
 
@@ -28,9 +23,9 @@ app.get("/", (res, req, next) => {
 });
 
 app.get("/acceuil", (res, req) => {
-    req.send("Vous étes maintenant dans l'acceuil !");
-    return;
+    req.json({ message: 'Hello from Node.js backend!' });
 });
+
 
 // On exporter l'application
 module.exports = app;
