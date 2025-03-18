@@ -22,7 +22,7 @@ app.get("/", (res, req, next) => {
     return;
 });
 
-app.get("/acceuil", (res, req) => {
+app.get("/api/acceuil", (res, req) => {
     req.json({ message: 'Hello from Node.js backend!' });
 });
 

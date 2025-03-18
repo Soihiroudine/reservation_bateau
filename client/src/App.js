@@ -5,7 +5,7 @@ function App() {
 
   useEffect(() => {
     // Appel API vers le backend
-    fetch('/acceuil')
+    fetch('/api/acceuil')
       .then((response) => response.json())
       .then((data) => {
         setMessage(data.message);
