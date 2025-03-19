@@ -11,6 +11,7 @@ function App() {
         setMessage(data.message);
       })
       .catch((error) => console.error('Error:', error));
+
   }, []);
 
   return (

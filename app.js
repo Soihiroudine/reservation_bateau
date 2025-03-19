@@ -10,6 +10,7 @@ const executionDB = require("./server/config/executeDB");
 executionDB("requetes.sql");
 
 // On appele les routes
+const routeAcceuil = require("./server/routes/routeAcceuil");
 
 // Acces au fichier du projet - css, image
 app.use(express.static("public"));
@@ -17,11 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Creation de routes
-app.get("/", (res, req, next) => {
-    req.send("Binvenu dans le serveur");
-    return;
-});
-
+app.use("/", routeAcceuil);
 
 // On exporter l'application
 module.exports = app;
