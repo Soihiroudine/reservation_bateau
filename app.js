@@ -4,13 +4,14 @@ const path = require("path");
 
 // On créer l'application expressJs avec : app
 const app = express();
+const cors = require('cors'); 
 
 // on importe le fichier qui permet le changement dans notre base de donné
 const executionDB = require("./server/config/executeDB");
 executionDB("requetes.sql");
 
 // On appele les routes
-const routeAcceuil = require("./server/routes/routeAcceuil");
+const routeAcceuil = require("./server/routes/routeAccueil");
 const routeReservation = require("./server/routes/routeReservation");
 const routeUtilisateur = require("./server/routes/routeUtilisateur");
 
@@ -19,6 +20,8 @@ app.use(express.static("public"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use(cors());
 
 // Creation de routes
 app.use("/", routeAcceuil);

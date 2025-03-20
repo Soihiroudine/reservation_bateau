@@ -1,3 +1,4 @@
+// 
 const mysql = require("mysql2");
 
 // Permet de recuperer les informations du fichier .env

@@ -1,23 +1,28 @@
-import React, { useEffect, useState } from 'react';
+// import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import Accueil from './page/Accueil';
+import Reservation from './page/Reservation';
+import Utilisateur from './page/Utilisateur';
 
 function App() {
-  const [message, setMessage] = useState('');
-
-  useEffect(() => {
-    // Appel API vers le backend
-    fetch('/api/acceuil')
-      .then((response) => response.json())
-      .then((data) => {
-        setMessage(data.message);
-      })
-      .catch((error) => console.error('Error:', error));
-
-  }, []);
-
   return (
-    <div>
-      <h1>{message}</h1>
-    </div>
+    <Router>
+    {/* 
+      <nav>
+        <ul>
+          <li to="/">Accueil<Link /></li>
+        </ul>
+      </nav> */}
+
+      {/* Définition des routes */}
+
+      <Routes>
+        <Route path="/" element={<Accueil />} />
+        <Route path="/reservation" element={<Reservation />} />
+        <Route path="/utilisateur" element={<Utilisateur />} />
+      </Routes>
+    </Router>
   );
 }
 
