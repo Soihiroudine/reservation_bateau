@@ -7,3 +7,5 @@ const Navbar = ({children}) => {
         </nav>
     );
 }
+
+export default Navbar;
