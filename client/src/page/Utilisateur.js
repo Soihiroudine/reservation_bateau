@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Header from '../components/Header';
+import NavbarGerant from '../components/NavbarGerant';
 
 const Utilisateur = () => {
 
@@ -19,6 +21,9 @@ const Utilisateur = () => {
 
     return (
         <div>
+            <Header>
+                <NavbarGerant nomUtilisateur="Gerant" />
+            </Header>
             <h1>Bienvenue, Utilisateur</h1>
             <p>{message}</p>
         </div>

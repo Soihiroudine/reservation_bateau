@@ -1,6 +1,6 @@
 // import React, { useEffect, useState } from 'react';
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes/* , Link */} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Accueil from './page/Accueil';
 import Reservation from './page/Reservation';
 import Utilisateur from './page/Utilisateur';
@@ -10,13 +10,10 @@ import Inscription from './page/Inscription';
 function App() {
   return (
     <Router>
-      {/* <nav>
-        <ul>
-          <li><Link to="/">Accueil</Link></li>
-          <li><Link to="/reservation">Reservation</Link></li>
-          <li><Link to="/utilisateur">Utilisateur</Link></li>
-        </ul>
-      </nav>  */}
+      {/* Navbar */}
+
+      
+      
 
       {/* Définition des routes*/}
 

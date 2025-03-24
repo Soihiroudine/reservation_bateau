@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import NavbarDafault from '../components/Navbar';
+import Header from '../components/Header';
 
 const Accueil = () => {
 
@@ -19,6 +21,10 @@ const Accueil = () => {
 
     return (
         <div>
+            {/* <NavbarDafault /> */}
+            <Header>
+                <NavbarDafault/>
+            </Header>
             <h1>Bienvenue sur mon site Web !</h1>
             <p>{message}</p>
         </div>

@@ -1,31 +1,16 @@
-import React, {/* useEffect,  useState */ } from 'react';
-// import axios from 'axios';
 import SectionAutentification from '../components/SectionAutentification';
-import FormConnexion from '../components/FormulaireConnexion';
+import FormInscription from '../components/FormulaireInscription';
+import logo from './../assets/logo.png';
 
 const Inscription = () => {
-
-    // const [message, setMessage] = useState('');
-
-    // useEffect(() => {
-    //     // Appel API vers le backend
-    //     // axios.get('/api/utilisateur/connexion')
-    //     //     .then(response => {
-    //     //     setMessage(response.message);
-    //     // })
-    //     // .catch(error => {
-    //     //     console.error('Erreur lors de la récuperation du message', error);
-    //     // });
-
-    // }, []);
 
     return (
         <SectionAutentification
             titre="Inscription"
-            formulaire={FormConnexion}
+            formulaire={FormInscription}
             phrase="Vous avez déjà un compte :"
-            phraseConnexion={"connectez vous ICI"}
-            logo="logo" 
+            phraseConnexion={<a href="/connexion">Connectez-vous ici</a>}
+            logo={<a href='/'><img src={logo} alt="logo" /></a>} 
         />
     );
 }

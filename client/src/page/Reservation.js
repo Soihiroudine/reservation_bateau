@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Header from '../components/Header';
+import NavbarDafault from '../components/Navbar';
 
 const Reservation = () => {
 
@@ -19,6 +21,9 @@ const Reservation = () => {
 
     return (
         <div>
+            <Header>
+                <NavbarDafault/>
+            </Header>
             <h1>Bienvenue, reservation</h1>
             <p>{message}</p>
         </div>

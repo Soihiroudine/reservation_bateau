@@ -5,27 +5,122 @@
     top: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: row;
 }
+
+/* Partie gauche de la page */
 
 .sectionAutentification .gauche {
     width: 50%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    background-color: aliceblue;
-    align-items: center;
-    justify-content: center;
+    background-color: #eeeeee;
+    justify-content: space-between;
 }
+
+.sectionAutentification .gauche h1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.9em;
+    font-size: 2em;
+    border-bottom: 2px solid #02436a;
+}
+
+.sectionAutentification .gauche form {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    width: 70%;
+    align-self: center;
+}
+
+.sectionAutentification .gauche form div {
+    display: flex;
+    flex-direction: column;
+}
+
+.sectionAutentification .gauche form div label {
+    font-size: 1.2em;
+    color: #02436a;
+    margin: 0.5em;
+}
+
+.sectionAutentification .gauche input {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 0.5em;
+    background: linear-gradient(to bottom, #000000, #02436a);
+    font-size: 1.2em;
+    color: #eeeeee;
+    border-radius: 5px;
+    margin: 1em 2em;
+    width: 80%;
+}
+
+.sectionAutentification .gauche input::placeholder {
+    color: #d1cfcf;
+}
+
+.sectionAutentification .gauche input[type="submit"] {
+    background: #05779a;
+    color: #eeeeee;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin: 1em 2em;
+    width: 80%;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+}
+
+.sectionAutentification .gauche input[type="submit"]:hover {
+    background: #02436a;
+}
+
+/* ====== partie droit de la page ====== */
 
 .sectionAutentification .droit {
     width: 50%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    background-color: aqua;
+    background-image: url("../../public/images/deep_dark_sea.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     align-items: center;
     justify-content: center;
+}
+
+.sectionAutentification .droit p {
+    font-size: 2em;
+    color: #eeeeee;
+    padding: 1em;
+}
+
+.sectionAutentification .droit a {
+    color: #00B8f1;
+}
+
+.sectionAutentification .droit a:hover {
+    color: #00B8f1;
+    text-decoration: underline;
+}
+
+.sectionAutentification .droit .logo {
+    display: flex;
+    filter: opacity(0.8, 0.8);
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+    border: 2px solid #eeeeee;
+    border-radius: 5px;
+    padding: 0.5em;
+    margin: 1em;
+}
+
+.sectionAutentification .droit .logo:hover {
+    filter: opacity(1, 1);
+    border-radius: 50%;
+    background: linear-gradient(to bottom, #000000, #02436a);
 }
