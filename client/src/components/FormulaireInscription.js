@@ -25,7 +25,7 @@ const FormInscription = () => {
             const reponse = await axios.post("/api/utilisateur/inscription", formDonnee);
             // setMessage(reponse.data.message);
 
-            // Rediriger vers la page de profil
+            // Rediriger vers la page de connexion
             if (reponse.data.message === "Gerant ajouté") {
                 // Enregistrer l'utilisateur dans le localStorage
                 setTimeout(() => {
