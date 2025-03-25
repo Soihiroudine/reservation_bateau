@@ -11,6 +11,7 @@ const FormConnexion = () => {
                 <label for="mdpConnexion">Mot de passe</label>
                 <input type='password' placeholder="mot de passe" id='mdpConnexion' name='mdpConnexion' required/>
             </div>
+            
             <input type='submit' value="Envoyer" />
         </form>
     );

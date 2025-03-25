@@ -2,7 +2,7 @@ import React from 'react';
 
 const FormInscription = () => {
     return (
-        <form method='post' action="/api/utilisateur/Inscription">
+        <form method='post' action="/api/utilisateur/inscription">
             <div>
                 <label for="nom">Nom</label>
                 <input type='text' placeholder="Nom" id='nom' name='nom' required />

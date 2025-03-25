@@ -1,8 +1,15 @@
+import React, { useEffect } from 'react';
+import axios from 'axios';
 import SectionAutentification from '../components/SectionAutentification';
 import FormInscription from '../components/FormulaireInscription';
 import logo from './../assets/logo.png';
 
 const Inscription = () => {
+
+    useEffect(() => {
+        // Appel API vers le backend
+        axios.get('/api/utilisateur/inscription');
+    }, []);
 
     return (
         <SectionAutentification

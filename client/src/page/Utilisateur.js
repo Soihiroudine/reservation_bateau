@@ -9,7 +9,7 @@ const Utilisateur = () => {
 
     useEffect(() => {
         // Appel API vers le backend
-        axios.get('/api/utilisateur')
+        axios.get('/api/utilisateur/profil')
             .then(response => {
             setMessage(response.message);
         })
@@ -22,7 +22,7 @@ const Utilisateur = () => {
     return (
         <div>
             <Header>
-                <NavbarGerant nomUtilisateur="Gerant" />
+                <NavbarGerant nomUtilisateur={message} />
             </Header>
             <h1>Bienvenue, Utilisateur</h1>
             <p>{message}</p>
