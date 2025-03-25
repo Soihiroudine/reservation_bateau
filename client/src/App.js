@@ -10,10 +10,6 @@ import Inscription from './page/Inscription';
 function App() {
   return (
     <Router>
-      {/* Navbar */}
-
-      
-      
 
       {/* Définition des routes*/}
 

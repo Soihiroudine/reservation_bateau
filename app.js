@@ -16,15 +16,14 @@ const routeAcceuil = require("./server/routes/routeAccueil");
 const routeReservation = require("./server/routes/routeReservation");
 const routeUtilisateur = require("./server/routes/routeUtilisateur");
 
-// Acces au fichier du projet - css, image
-app.use(express.static("public"));
-
+// urlencoded pour les requetes POST
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(cors());
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(express.json());
 
 // On créer une session secret pour notre application 
 const sessionCle = process.env.SESSION_SECRET;

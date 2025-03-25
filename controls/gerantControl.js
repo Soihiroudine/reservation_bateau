@@ -8,14 +8,17 @@ class GerantControl {
     }
 
     addGerant(req, res) {
-        const nom = req.body.nom;
-        const prenom = req.body.prenom;
-        const email = req.body.emailInscription;
-        const password = req.body.mdpInscription;
+        const { nom, prenom, email, password } = req.body;
+        
+        // const nom = req.body.nom;
+        // const prenom = req.body.prenom;
+        // const email = req.body.emailInscription;
+        // const password = req.body.mdpInscription;
 
         // Hash password
         const salt = bycrypt.genSaltSync(10);
         const hash = bycrypt.hashSync(password, salt);
+        console.log("mot de passe hash : " + hash);
 
         this.gerant.addGerant(nom, prenom, email, hash, (err, data) => {
             if (err) {

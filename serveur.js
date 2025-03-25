@@ -22,5 +22,5 @@ const dateActuelle = date.toLocaleDateString();
 server.listen(PORT, () =>{
     // Afficher l'heure
     console.log(`Serveur lancer ${dateActuelle} à ${date.toLocaleTimeString()}`); 
-    console.log(`Le serveur est lancé au port : ${PORT}`);
+    console.log(`Le serveur est lancé au : ${process.env.PROTOCOLE}://${process.env.NOM_DOMAINE}:${process.env.PORT_SERVEUR}`);
 });
