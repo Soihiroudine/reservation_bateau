@@ -5,28 +5,32 @@ const gerantControl = require("./../../controls/gerantControl");
 // route [ Racine utilisateur ]
 // Redirige vers la page de profil
 router.get("/api/utilisateur", (req, res) => {
-    res.redirect("/api/utilisateur/profil");
+    res.redirect("/utilisateur");
 });
 
 // route [ Connexion ]
 router.get("/api/utilisateur/connexion", (req, res) => {
     if(req.session.user) {
-        return res.redirect("/api/utilisateur/profil");
+        return res.redirect("/utilisateur");
     }
     res.json({message : ""});
 });
 
-router.post("/api/utilisateur/connexion", gerantControl.connectionGerant.bind(gerantControl));
+router.post("/api/utilisateur/connexion",
+    gerantControl.connectionGerant.bind(gerantControl)
+);
 
 // route [ Inscription ]
 router.get("/api/utilisateur/inscription", (req, res) => {
     if(req.session.user) {
-        return res.redirect("/api/utilisateur/profil");
+        return res.redirect("/utilisateur");
     }
     res.json({message : ""});
 });
 
-router.post("/api/utilisateur/inscription", gerantControl.addGerant.bind(gerantControl));
+router.post("/api/utilisateur/inscription",
+    gerantControl.addGerant.bind(gerantControl)
+);
 
 // route [ Deconnexion ]
 router.get("/api/utilisateur/deconnexion", (req, res) => {
@@ -36,7 +40,7 @@ router.get("/api/utilisateur/deconnexion", (req, res) => {
             return res.send('Erreur lors de la déconnexion.');
         }
         console.log("Déconnexion réussie");
-        res.redirect("/api/utilisateur/connexion");
+        res.redirect("/connexion");
 });
 
 });
@@ -46,7 +50,7 @@ router.get("/api/utilisateur/profil", (req, res) => {
     if(req.session.user) {
         return res.json({user : req.session.user});
     }
-    return res.redirect("/api/utilisateur/connexion");
+    return res.redirect("/connexion");
 });
 
 

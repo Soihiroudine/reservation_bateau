@@ -1,124 +1,98 @@
 import axios from 'axios';
-import React, { /* useEffect, useState */ } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-// const FormInscription = () => {
+const FormInscription = () => {
 
-//     const [nom, setNom] = useState('');
-//     const [prenom, setPrenom] = useState('');
-//     const [emailInscription, setEmailInscription] = useState('');
-//     const [mdpInscription, setMdpInscription] = useState('');
+    const [nom, setNom] = useState('');
+    const [prenom, setPrenom] = useState('');
+    const [emailInscription, setEmailInscription] = useState('');
+    const [mdpInscription, setMdpInscription] = useState('');
+    const [message, setMessage] = useState('');
+    const navigate = useNavigate();
 
-//     useEffect(() => {
-//         console.log(nom);
-//         console.log(prenom);
-//         console.log(emailInscription);
-//         console.log(mdpInscription);
-//         setNom(nom);
-//         setPrenom(prenom);
-//         setEmailInscription(emailInscription);
-//         setMdpInscription(mdpInscription);
-//     }, [nom, prenom, emailInscription, mdpInscription]);
+    useEffect(() => {
+        alert(message);
+    }, [message]);
 
-//     // const handleChange = (event) => {
-//     //     setNom({ nom: event.target.value });
-//     // }
-
-//     const handleSubmit = (event) => {
-//         event.preventDefault();
-
-//         const user = {
-//             nom: nom,
-//             prenom: prenom,
-//             emailInscription: emailInscription,
-//             mdpInscription: mdpInscription
-//         };
-
-//         axios.post(`/api/utilisateur/inscription`, { user })
-//             .then(res => {
-//                 console.log(res);
-//                 console.log(res.data);
-//         });
-//     }
-
-//     return (
-//         <form onSubmit={handleSubmit}>
-//             <div>
-//                 <label for="nom">Nom</label>
-//                 <input type='text' placeholder="Nom" id='nom' name='nom' required />
-//             </div>
-//             <div>
-//                 <label for="prenom">Prenom</label>
-//                 <input type='text' placeholder="Prenom" id='prenom' name='prenom' required />
-//             </div>
-//             <div>
-//                 <label for="emailInscription">E-mail</label>
-//                 <input type='email' placeholder="email" id='emailInscription' name='emailInscription' required />
-//             </div>
-//             <div>
-//                 <label for="mdpInscription">Mot de passe</label>
-//                 <input type='password' placeholder="mot de passe" id='mdpInscription' name='mdpInscription' required />
-//             </div>
-//             <input type='submit' value="Envoyer" />
-//         </form>
-//     );
-// }
-
-class FormInscription extends React.Component {
-    constructor(props) {
-        super(props);
-        
-        this.state = {
-            nom: '',
-            prenom: '',
-            emailInscription: '',
-            mdpInscription: ''
-        };
-    }
-
-    handleChange = (event) => {
-        this.setState({ [event.target.name]: event.target.value });
-    }
-
-    handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const user = {
-            nom: this.state.nom,
-            prenom: this.state.prenom,
-            emailInscription: this.state.emailInscription,
-            mdpInscription: this.state.mdpInscription
+        const formDonnee = {
+            nom: nom,
+            prenom: prenom,
+            emailInscription: emailInscription,
+            mdpInscription: mdpInscription
         };
 
-        axios.post(`/api/utilisateur/inscription`, { user })
-            .then(res => {
-                console.log(res);
-                console.log(res.data);
-        });
+        try {
+            const reponse = await axios.post("/api/utilisateur/inscription", formDonnee);
+            setMessage(reponse.data.message);
+
+            // Rediriger vers la page de profil
+            if (reponse.data.message === "Gerant connecté") {
+                // Enregistrer l'utilisateur dans le localStorage
+                setTimeout(() => {
+                    navigate('/connexion'); // Redirige vers la page de connexion
+                }, 2000); // Attendre 2 secondes avant la redirection
+            }
+        } catch (error) {
+            setMessage("Erreur lors de l'inscription");
+            console.error(error);
+        }
+        
     }
 
-    render() {
-        return (
-            <form onSubmit={this.handleSubmit}>
-                <div>
-                    <label for="nom">Nom</label>
-                    <input type='text' placeholder="Nom" id='nom' name='nom' required onChange={this.handleChange} />
-                </div>
-                <div>
-                    <label for="prenom">Prenom</label>
-                    <input type='text' placeholder="Prenom" id='prenom' name='prenom' required onChange={this.handleChange} />
-                </div>
-                <div>
-                    <label for="emailInscription">E-mail</label>
-                    <input type='email' placeholder="email" id='emailInscription' name='emailInscription' required onChange={this.handleChange} />
-                </div>
-                <div>
-                    <label for="mdpInscription">Mot de passe</label>
-                    <input type='password' placeholder="mot de passe" id='mdpInscription' name='mdpInscription' required onChange={this.handleChange} />
-                </div>
-                <input type='submit' value="Envoyer" />
-            </form>
-        );
-    }
+    return (
+        <>
+        <form onSubmit={handleSubmit}>
+            <div>
+                <label for="nom">Nom</label>
+                <input type='text'
+                    placeholder="Nom"
+                    id='nom' 
+                    name='nom'
+                    value={nom}
+                    required 
+                    onChange={(e) => setNom(e.target.value)} />
+            </div>
+            <div>
+                <label for="prenom">Prenom</label>
+                <input type='text' 
+                    placeholder="Prenom" 
+                    id='prenom' 
+                    name='prenom'
+                    vallue={prenom}
+                    required 
+                    onChange={(e) => setPrenom(e.target.value)} />
+            </div>
+            <div>
+                <label for="emailInscription">E-mail</label>
+                <input type='email' 
+                    placeholder="email" 
+                    id='emailInscription' 
+                    name='emailInscription'
+                    value={emailInscription} 
+                    required 
+                    onChange={(e) => setEmailInscription(e.target.value)} />
+            </div>
+            <div>
+                <label for="mdpInscription">Mot de passe</label>
+                <input type='password'
+                    placeholder="mot de passe"
+                    id='mdpInscription'
+                    name='mdpInscription'
+                    value={mdpInscription}
+                    required
+                    onChange={(e) => setMdpInscription(e.target.value)} />
+            </div>
+            <input type='submit' value="Envoyer" />
+        </form>
+        
+        </>
+    );
 }
+
+
 
 export default FormInscription;

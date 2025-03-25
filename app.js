@@ -1,15 +1,15 @@
 // On import le framework express
 const express = require("express");
 const session = require("express-session");
-// const bodyParser = require("body-parser");
+const cors = require('cors'); 
 
 // On créer l'application expressJs avec : app
 const app = express();
-const cors = require('cors'); 
+
 
 // on importe le fichier qui permet le changement dans notre base de donné
-const executionDB = require("./server/config/executeDB");
-executionDB("requetes.sql");
+// const executionDB = require("./server/config/executeDB");
+// executionDB("requetes.sql");
 
 // On appele les routes
 const routeAcceuil = require("./server/routes/routeAccueil");
@@ -21,8 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(cors());
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
+
 // app.use(express.json());
 
 // On créer une session secret pour notre application 

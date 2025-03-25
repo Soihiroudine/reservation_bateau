@@ -8,33 +8,32 @@ class GerantControl {
     }
 
     addGerant(req, res) {
-        const { nom, prenom, email, password } = req.body;
-        
-        // const nom = req.body.nom;
-        // const prenom = req.body.prenom;
-        // const email = req.body.emailInscription;
-        // const password = req.body.mdpInscription;
+        const nom = req.body.nom;
+        const prenom = req.body.prenom;
+        const email = req.body.emailInscription;
+        const password = req.body.mdpInscription;
 
         // Hash password
-        const salt = bycrypt.genSaltSync(10);
-        const hash = bycrypt.hashSync(password, salt);
+        // const salt = bycrypt.genSaltSync(10);
+        const hash = bycrypt.hashSync(password, 10);
         console.log("mot de passe hash : " + hash);
 
-        this.gerant.addGerant(nom, prenom, email, hash, (err, data) => {
+        this.gerant.addGerant(nom, prenom, email, hash, (err) => {
             if (err) {
                 res.status(500).send({
                     message:
                         err.message || "Some error occurred while creating the Gerant."
                 });
-            } else res.send(data);
+            }
+            res.status(301).send({ message: "Gerant ajouté" });
+            console.log("Gerant ajouté");
         });
     }
 
     // connection d'un gerant
     connectionGerant(req, res) {
-        const email = req.body.email;
-        const password = req.body.password;
-
+        const email = req.body.emailConnexion;
+        const password = req.body.mdpConnexion;
 
         this.gerant.getGerantByEmail(email, (err, data) => {
             if (err) {
