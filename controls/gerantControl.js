@@ -20,12 +20,13 @@ class GerantControl {
 
         this.gerant.addGerant(nom, prenom, email, hash, (err) => {
             if (err) {
-                res.status(500).send({
+                res.status(500).json({
                     message:
                         err.message || "Some error occurred while creating the Gerant."
                 });
             }
-            res.status(301).send({ message: "Gerant ajouté" });
+            res.status(200).json({message: "Gerant ajouté"});
+            // res.status(301).send({ message: "Gerant ajouté" });
             console.log("Gerant ajouté");
         });
     }
@@ -46,16 +47,20 @@ class GerantControl {
                     // On compart les mot de passe
                     // Premier parametre le mot de passe en clair
                     // Deuxieme parametre le mot de passe crypté
-                    const result = bycrypt.compareSync(password, data[0].password);
+                    const result = bycrypt.compareSync(password, data[0].motDePasse);
                     if (result) {
-                        res.send(data);
+                        // res.send(data);
+                        req.session.user = data[0];
+                        res.json({ message: "Gerant connecté" });
                     } else {
                         res.status(500).send({
+                            connecter : false,
                             message: "Email ou mot de passe incorrect"
                         });
                     }
                 } else {
                     res.status(500).send({
+                        connecter : false,
                         message: "Email ou mot de passe incorrect"
                     });
                 }

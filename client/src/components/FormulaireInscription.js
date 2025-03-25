@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { /* useEffect, */ useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const FormInscription = () => {
@@ -8,12 +8,8 @@ const FormInscription = () => {
     const [prenom, setPrenom] = useState('');
     const [emailInscription, setEmailInscription] = useState('');
     const [mdpInscription, setMdpInscription] = useState('');
-    const [message, setMessage] = useState('');
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        alert(message);
-    }, [message]);
+    // const [message, setMessage] = useState('');
+    const navigate = useNavigate(); // Hook de React Router pour la redirection
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -27,17 +23,19 @@ const FormInscription = () => {
 
         try {
             const reponse = await axios.post("/api/utilisateur/inscription", formDonnee);
-            setMessage(reponse.data.message);
+            // setMessage(reponse.data.message);
 
             // Rediriger vers la page de profil
-            if (reponse.data.message === "Gerant connecté") {
+            if (reponse.data.message === "Gerant ajouté") {
                 // Enregistrer l'utilisateur dans le localStorage
                 setTimeout(() => {
+                    console.log("rédirection réussie");
+                    alert("Inscription réussie");
                     navigate('/connexion'); // Redirige vers la page de connexion
                 }, 2000); // Attendre 2 secondes avant la redirection
             }
         } catch (error) {
-            setMessage("Erreur lors de l'inscription");
+            // setMessage("Erreur lors de l'inscription");
             console.error(error);
         }
         
