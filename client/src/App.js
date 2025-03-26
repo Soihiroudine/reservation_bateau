@@ -6,6 +6,7 @@ import Reservation from './page/Reservation';
 import Utilisateur from './page/Utilisateur';
 import Connexion from './page/Connexion';
 import Inscription from './page/Inscription';
+import Logout from './page/Logout';
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
         <Route path="/utilisateur" element={<Utilisateur />} />
         <Route path="/connexion" element={<Connexion />} />
         <Route path="/inscription" element={<Inscription />} />
+        <Route path='/logout' element={<Logout />} />
+        <Route path="*" element={<h1>404</h1>} />
       </Routes>
     </Router>
   );

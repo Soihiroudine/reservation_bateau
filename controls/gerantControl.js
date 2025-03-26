@@ -36,9 +36,16 @@ class GerantControl {
         const email = req.body.emailConnexion;
         const password = req.body.mdpConnexion;
 
+        if (!email || !password) {
+            return res.status(500).json({
+                connecter : false,
+                message: "Email ou mot de passe incorrect"
+            });
+        }
+
         this.gerant.getGerantByEmail(email, (err, data) => {
             if (err) {
-                res.status(500).send({
+                res.status(500).json({
                     message:
                         err.message || "Some error occurred while retrieving gerants."
                 });
@@ -51,7 +58,10 @@ class GerantControl {
                     if (result) {
                         // res.send(data);
                         req.session.user = data[0];
-                        res.json({ message: "Gerant connecté" });
+                        res.json({
+                            connecter : true,
+                            message: "Gerant connecté" 
+                        });
                     } else {
                         res.status(500).send({
                             connecter : false,

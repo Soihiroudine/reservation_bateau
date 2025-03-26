@@ -50,7 +50,7 @@ router.get("/api/utilisateur/deconnexion", (req, res) => {
 // route [ Profil ]
 router.get("/api/utilisateur/profil", (req, res) => {
     if(req.session.user) {
-        return res.json({user : req.session.user});
+        return res.json({connecter : true});
     }
     res.json({connecter : false});
 });
