@@ -32,8 +32,7 @@ const Utilisateur = () => {
             <Header>
                 <NavbarGerant nomUtilisateur={user.nomGerant} />
             </Header>
-            <h1>Bienvenue, Utilisateur</h1>
-            <p>{user.nomGerant}</p>
+            <h1>Bienvenue, {user.nomGerant}</h1>
         </div>
     );
 }
