@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const gerantControl = require("./../../controls/gerantControl");
-const { connect } = require("http2");
 
 // route [ Racine utilisateur ]
+
 // Redirige vers la page de profil
 // router.get("/api/utilisateur", (req, res) => {
 //     res.redirect("/utilisateur");
@@ -38,8 +38,7 @@ router.get("/api/utilisateur/deconnexion", (req, res) => {
     // Route pour détruire la session
     req.session.destroy((err) => {
         if (err) {
-            res.send('Erreur lors de la déconnexion.');
-            return res.json({connecter : true});
+            return res.send('Erreur lors de la déconnexion.');
         }
         console.log("Déconnexion réussie");
         res.json({connecter : false});

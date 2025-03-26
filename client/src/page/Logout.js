@@ -1,32 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import NavbarDafault from '../components/Navbar';
-import Header from '../components/Header';
+import { useNavigate } from 'react-router-dom';
 
 const Accueil = () => {
 
-    const [message, setMessage] = useState('');
+    const [connecter, setConnecter] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         // Appel API vers le backend
-        axios.get('/api/accueil')
+        axios.get('/api/utilisateur/logout')
             .then(response => {
-            setMessage(response.message);
+            setConnecter(response.data.connecter);
         })
         .catch(error => {
             console.error('Erreur lors de la récuperation du message', error);
         });
 
-    }, []);
+        if(!connecter) {
+            alert('Vous êtes déconnecté');
+            navigate('/connexion');
+        }
+
+    }, [connecter, navigate]);
 
     return (
         <div>
             {/* <NavbarDafault /> */}
-            <Header>
-                <NavbarDafault/>
-            </Header>
-            <h1>Bienvenue sur mon site Web !</h1>
-            <p>{message}</p>
         </div>
     );
 }

@@ -24,11 +24,8 @@ const FormConnexion = () => {
             }
             // // Rediriger vers la page de profil
             else if (reponse.data.message === "Gerant connecté") {
-                // Enregistrer l'utilisateur dans le localStorage
-                setTimeout(() => {
-                    alert("Connexion réussie");
-                    navigate('/utilisateur'); // Redirige vers la page de profil
-                }, 2000); // Attendre 2 secondes avant la redirection
+                alert("Connexion réussie");
+                navigate('/utilisateur'); // Redirige vers la page de profil
             }
             console.log(reponse.data);
         } catch (error) {
