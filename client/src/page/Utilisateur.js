@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Header from '../components/Header';
 import NavbarGerant from '../components/NavbarGerant';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const Utilisateur = () => {
 
     const [connecter, setConnecter] = useState(false);
     const [user, setUser] = useState({});
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     useEffect(() => {
         // Appel API vers le backend
@@ -21,19 +21,19 @@ const Utilisateur = () => {
             console.error('Erreur lors de la récuperation du message', error);
         });
 
-       if(!connecter) {
-            alert('Vous êtes déconnecté');
-            navigate('/connexion'); // Redirige vers la page de connexion
-        }
+    //    if(connecter === false) {
+    //         alert('Vous êtes déconnecté');
+    //         navigate('/connexion'); // Redirige vers la page de connexion
+    //     }
     });
 
     return (
         <div>
             <Header>
-                <NavbarGerant nomUtilisateur={user.nom} />
+                <NavbarGerant nomUtilisateur={user.nomGerant} />
             </Header>
             <h1>Bienvenue, Utilisateur</h1>
-            <p>{user.name}</p>
+            <p>{user.nomGerant}</p>
         </div>
     );
 }

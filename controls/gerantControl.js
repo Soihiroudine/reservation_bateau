@@ -38,7 +38,7 @@ class GerantControl {
 
         this.gerant.getGerantByEmail(email, (err, data) => {
             if (err) {
-                res.status(500).json({
+                res.status(500).send({
                     message:
                         err.message || "Some error occurred while retrieving gerants."
                 });
