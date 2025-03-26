@@ -21,7 +21,6 @@ const Accueil = () => {
             alert('Vous êtes déconnecté');
             navigate('/connexion');
         }
-
     }, [connecter, navigate]);
 
     return (

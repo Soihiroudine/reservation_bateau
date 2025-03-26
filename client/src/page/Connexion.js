@@ -11,8 +11,6 @@ const Connexion = () => {
 
     useEffect(() => {
         // On va verifier si l'utilisateur est connecté
-        // On va utiliser un fichier json pour stocker les informations de l'utilisateur
-        // On va utiliser un fichier json pour vérifier si l'utilisateur est connecté
         // Appel API vers le backend
         axios.get('/api/utilisateur/connexion')
             .then((reponse) => {
@@ -25,7 +23,7 @@ const Connexion = () => {
                 // Redirection vers la page de profil
                 navigate('/utilisateur');
             }
-    }, [connecter, navigate]);
+    });
     
     return (
         <SectionAutentification

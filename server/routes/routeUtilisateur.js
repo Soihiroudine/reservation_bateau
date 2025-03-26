@@ -24,7 +24,7 @@ router.post("/api/utilisateur/connexion",
 // route [ Inscription ]
 router.get("/api/utilisateur/inscription", (req, res) => {
     if(req.session.user) {
-        res.json({connecter : true});
+        return res.json({connecter : true});
     }
     res.json({connecter : false});
 });
