@@ -9,7 +9,7 @@ const Accueil = () => {
 
     useEffect(() => {
         // Appel API vers le backend
-        axios.get('/api/utilisateur/logout')
+        axios.get('/api/utilisateur/deconnexion')
             .then(response => {
             setConnecter(response.data.connecter);
         })
@@ -17,15 +17,15 @@ const Accueil = () => {
             console.error('Erreur lors de la récuperation du message', error);
         });
 
-        if(!connecter) {
-            alert('Vous êtes déconnecté');
-            navigate('/connexion');
-        }
-    }, [connecter, navigate]);
+    
+    }, []);
 
     return (
-        <div>
-            {/* <NavbarDafault /> */}
+        <div className="logout-page">
+            <h1>Bienvenue sur notre site de réservation de bateau</h1>
+            <p>Vous êtes déconnecté</p>
+            <button onClick={() => navigate('/connexion')}>Se connecter</button>
+            <button onClick={() => navigate('/inscription')}>S'inscrire</button>
         </div>
     );
 }

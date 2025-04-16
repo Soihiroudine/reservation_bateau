@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const gerantControl = require("./../../controls/gerantControl");
+const BateauControl = require("./../../controls/bateauControl");
 
 // route [ Racine utilisateur ]
 
@@ -12,9 +13,9 @@ const gerantControl = require("./../../controls/gerantControl");
 // route [ Connexion ]
 router.get("/api/utilisateur/connexion", (req, res) => {
     if(req.session.user) {
-        return res.json({connecter : true});
+        return res.json({connecter : true, user : req.session.user});
     }
-    res.json({connecter : false});
+    res.json({connecter : false, user : {}});
 });
 
 router.post("/api/utilisateur/connexion",
@@ -41,7 +42,6 @@ router.get("/api/utilisateur/deconnexion", (req, res) => {
             return res.send('Erreur lors de la déconnexion.');
         }
         console.log("Déconnexion réussie");
-        res.json({connecter : false});
     });
 
 });
@@ -51,7 +51,7 @@ router.get("/api/utilisateur/profil", (req, res) => {
     if(req.session.user) {
         return res.json({connecter : true, user : req.session.user});
     }
-    res.json({connecter : false});
+    res.json({connecter : false, user : {}});
 });
 
 

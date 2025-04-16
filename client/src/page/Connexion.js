@@ -3,16 +3,31 @@ import axios from 'axios';
 import SectionAutentification from '../components/SectionAutentification';
 import FormConnexion from '../components/FormulaireConnexion';
 import logo from './../assets/logo.png';
+import { useNavigate } from 'react-router-dom';
+
 
 const Connexion = () => {
 
+    // On va verifier si l'utilisateur est connecté
+    const [user, setUser] = React.useState({});
+    const navigate = useNavigate(); // Hook de React Router pour la redirection
+
     useEffect(() => {
-        // On va verifier si l'utilisateur est connecté
-        // On va utiliser un fichier json pour stocker les informations de l'utilisateur
-        // On va utiliser un fichier json pour vérifier si l'utilisateur est connecté
         // Appel API vers le backend
-        axios.get('/api/utilisateur/connexion');
-    }, []);
+        axios.get('/api/utilisateur/connexion')
+            .then(response => {
+                setUser(response.data.user);
+            })
+        .catch(error => {
+            console.error('Erreur lors de la récuperation du message', error);
+        });
+    },[]);
+
+    useEffect(() => {
+        if (Object.keys(user).length >= 1){
+            navigate('/utilisateur'); // Redirige vers la page de profil   
+        }
+    }, [user, navigate]);
     
     return (
         <SectionAutentification

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const FormConnexion = () => {
     const [email, setEmail] = useState('');
     const [mdpConnexion, setMdpConnexion] = useState('');
     // const [message, setMessage] = useState('');
-    const navigate = useNavigate(); // Hook de React Router pour la redirection
+    // const navigate = useNavigate(); // Hook de React Router pour la redirection
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -20,13 +20,14 @@ const FormConnexion = () => {
             const reponse = await axios.post("/api/utilisateur/connexion", formDonnee);
             // setMessage(reponse.data.message);
             if (reponse.data.message === "Email ou mot de passe incorrect") {
+                alert("Email ou mot de passe incorrect");
                 return;
             }
             // // Rediriger vers la page de profil
-            else if (reponse.data.message === "Gerant connecté") {
-                alert("Connexion réussie");
-                navigate('/utilisateur'); // Redirige vers la page de profil
-            }
+            // else if (reponse.data.message === "Gerant connecté") {
+            //     alert("Connexion réussie");
+            //     navigate('/utilisateur'); // Redirige vers la page de profil
+            // }
             console.log(reponse.data);
         } catch (error) {
             console.error(error);
