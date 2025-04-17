@@ -3,6 +3,9 @@ const router = express.Router();
 const gerantControl = require("./../../controls/gerantControl");
 const BateauControl = require("./../../controls/bateauControl");
 
+
+const MESSAGE_CONNECTER = "Utilisateur connecté";
+const MESSAGE_NON_CONNECTER = "Utilisateur non connecté";
 // route [ Racine utilisateur ]
 
 // Redirige vers la page de profil
@@ -13,9 +16,17 @@ const BateauControl = require("./../../controls/bateauControl");
 // route [ Connexion ]
 router.get("/api/utilisateur/connexion", (req, res) => {
     if(req.session.user) {
-        return res.json({connecter : true, user : req.session.user});
+        return res.json({
+            connecter : true,
+            user : req.session.user,
+            message : MESSAGE_CONNECTER
+        });
     }
-    res.json({connecter : false, user : {}});
+    res.json({
+        connecter : false,
+        user : {},
+        message : MESSAGE_NON_CONNECTER
+    });
 });
 
 router.post("/api/utilisateur/connexion",
@@ -25,9 +36,17 @@ router.post("/api/utilisateur/connexion",
 // route [ Inscription ]
 router.get("/api/utilisateur/inscription", (req, res) => {
     if(req.session.user) {
-        return res.json({connecter : true});
+        return res.status(200).json({
+            connecter : true,
+            user : req.session.user,
+            message : MESSAGE_CONNECTER
+        });
     }
-    res.json({connecter : false});
+    res.status(500).json({
+        connecter : false,
+        user : {},
+        message : MESSAGE_NON_CONNECTER
+    });
 });
 
 router.post("/api/utilisateur/inscription",
@@ -39,9 +58,17 @@ router.get("/api/utilisateur/deconnexion", (req, res) => {
     // Route pour détruire la session
     req.session.destroy((err) => {
         if (err) {
-            return res.send('Erreur lors de la déconnexion.');
+            return res.status(500).json({
+                connecter : true,
+                user : req.session.user,
+                message : 'Erreur lors de la déconnexion.'
+            });
         }
-        console.log("Déconnexion réussie");
+        res.status(200).json({
+            connecter : false,
+            user : {},
+            message : "Déconnexion réussie"
+        });
     });
 
 });
@@ -49,9 +76,17 @@ router.get("/api/utilisateur/deconnexion", (req, res) => {
 // route [ Profil ]
 router.get("/api/utilisateur/profil", (req, res) => {
     if(req.session.user) {
-        return res.json({connecter : true, user : req.session.user});
+        return res.status(200).json({
+            connecter : true,
+            user : req.session.user,
+            message : MESSAGE_CONNECTER
+        });
     }
-    res.json({connecter : false, user : {}});
+    res.status(500).json({
+        connecter : false, 
+        user : {},
+        message : MESSAGE_NON_CONNECTER
+    });
 });
 
 

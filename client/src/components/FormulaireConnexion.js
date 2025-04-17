@@ -18,15 +18,18 @@ const FormConnexion = () => {
 
         try {
             const reponse = await axios.post("/api/utilisateur/connexion", formDonnee);
-             
-            setMessage(reponse.data.message);
+            
+            const status = reponse.status;
+            const messageServeur = reponse.data.message;
 
-            if (reponse.data.user === false) {
-                setMessage("Email ou mot de passe incorrect");
+            setMessage(messageServeur);
+
+            if (status === 500) {
+                // setMessage("Email ou mot de passe incorrect");
                 return;
             }
             // // Rediriger vers la page de profil
-            else if (reponse.data.user === true) {
+            else if (status === 200) {
                 alert("Connexion réussie");
                 navigate('/utilisateur'); // Redirige vers la page de profil
             }

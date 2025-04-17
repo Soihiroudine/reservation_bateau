@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import SectionAutentification from '../components/SectionAutentification';
 import FormConnexion from '../components/FormulaireConnexion';
@@ -9,8 +9,9 @@ import { useNavigate } from 'react-router-dom';
 const Connexion = () => {
 
     // On va verifier si l'utilisateur est connecté
-    const [user, setUser] = React.useState({});
+    const [user, setUser] = useState({});
     const navigate = useNavigate(); // Hook de React Router pour la redirection
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         // Appel API vers le backend
@@ -20,14 +21,21 @@ const Connexion = () => {
             })
         .catch(error => {
             console.error('Erreur lors de la récuperation du message', error);
+        })
+        .finally(() => {
+            setLoading(false); // Fin du chargement
         });
     },[]);
 
     useEffect(() => {
-        if (Object.keys(user).length > 0){
+        if (Object.keys(user).length > 0 && !loading){
             navigate('/utilisateur'); // Redirige vers la page de profil   
         }
-    }, [user, navigate]);
+    }, [loading, user, navigate]);
+
+    if (loading) {
+        return <div>Chargement...</div>; // Afficher un message de chargement
+    }
     
     return (
         <SectionAutentification

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const Accueil = () => {
 
     const [connecter, setConnecter] = useState(false);
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -15,10 +16,21 @@ const Accueil = () => {
         })
         .catch(error => {
             console.error('Erreur lors de la récuperation du message', error);
+        })
+        .finally(() => {
+            setLoading(false);
         });
 
     
     }, []);
+
+    useEffect(() => {
+        if (!loading && )
+    }, [loading]);
+
+    if (loading) {
+        return <div>Chargement...</div>; // Afficher un message de chargement
+    }
 
     return (
         <div className="logout-page">
