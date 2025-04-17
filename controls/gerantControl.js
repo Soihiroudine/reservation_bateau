@@ -51,7 +51,7 @@ class GerantControl {
                     // Premier parametre le mot de passe en clair
                     // Deuxieme parametre le mot de passe crypté
                     const result = bycrypt.compareSync(password, data[0].motDePasse);
-                    
+
                     if (result) {
                         // res.send(data);
                         req.session.user = data[0];

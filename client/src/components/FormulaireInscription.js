@@ -36,7 +36,7 @@ const FormInscription = () => {
             }
         } catch (error) {
             // setMessage("Erreur lors de l'inscription");
-            console.error(error);
+            console.error(error.message);
         }
         
     }

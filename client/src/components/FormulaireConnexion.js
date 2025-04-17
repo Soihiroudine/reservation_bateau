@@ -23,19 +23,18 @@ const FormConnexion = () => {
             const messageServeur = reponse.data.message;
 
             setMessage(messageServeur);
-
+            
+            console.log("mote de passe inrehiyfguygs_odg_ g");
             if (status === 500) {
-                // setMessage("Email ou mot de passe incorrect");
-                return;
-            }
-            // // Rediriger vers la page de profil
-            else if (status === 200) {
+                alert("Mote incirre");
+                navigate('/connexion');
+            }else if (status === 200) {
                 alert("Connexion réussie");
                 navigate('/utilisateur'); // Redirige vers la page de profil
             }
             console.log(message);
         }catch (error) {
-            setMessage(error);
+            setMessage(error.message);
         }
 
     }
