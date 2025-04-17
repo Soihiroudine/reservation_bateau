@@ -11,6 +11,7 @@ const Utilisateur = () => {
     // const [bateau, setBateau] = useState({});
     // const [reservations, setReservations] = useState([]);
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         // Appel API vers le backend pour récupérer les bateaux du gérant
@@ -20,15 +21,22 @@ const Utilisateur = () => {
             })
             .catch(error => {
                 console.error('Erreur lors de la récupération des bateaux', error);
+            })
+            .finally(() => {
+                setLoading(false); // Fin du chargement
             });
     }, []);
 
     useEffect(() => {
-        if (Object.keys(user).length === 0) {
+        if (Object.keys(user).length === 0 && !loading) {
             alert('Vous devez vous connecter pour accéder à cette page');
             navigate('/connexion'); // Redirige vers la page de connexion
         }
-    }, [user, navigate]);
+    }, [loading, user, navigate]);
+
+    if (loading) {
+        return <div>Chargement...</div>; // Afficher un message de chargement
+    }
 
     return (
         <div>

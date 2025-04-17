@@ -14,19 +14,15 @@ class GerantControl {
         const password = req.body.mdpInscription;
 
         // Hash password
-        // const salt = bycrypt.genSaltSync(10);
         const hash = bycrypt.hashSync(password, 10);
-        console.log("mot de passe hash : " + hash);
 
         this.gerant.addGerant(nom, prenom, email, hash, (err) => {
             if (err) {
                 res.status(500).json({
-                    message:
-                        err.message || "Some error occurred while creating the Gerant."
+                    message: err.message || "Quelques problèmes sont arriver à la création du Gerant."
                 });
             }
             res.status(200).json({message: "Gerant ajouté"});
-            // res.status(301).send({ message: "Gerant ajouté" });
             console.log("Gerant ajouté");
         });
     }
@@ -38,9 +34,10 @@ class GerantControl {
 
         this.gerant.getGerantByEmail(email, (err, data) => {
             if (err) {
-                res.status(500).send({
-                    message:
-                        err.message || "Some error occurred while retrieving gerants."
+                res.status(500).json({
+                    connecter: false,
+                    user: {},
+                    message: err.message || "Une erreur lors de la connexion est survenue."
                 });
             } else {
                 if (data.length > 0) {
@@ -52,19 +49,22 @@ class GerantControl {
                         // res.send(data);
                         req.session.user = data[0];
                         
-                        res.json({
+                        res.status(200).json({
                             connecter : true,
+                            user : req.session.user,
                             message: "Gerant connecté" 
                         });
                     } else {
-                        res.status(500).send({
+                        res.status(500).json({
                             connecter : false,
+                            user : {},
                             message: "Email ou mot de passe incorrect"
                         });
                     }
                 } else {
-                    res.status(500).send({
+                    res.status(500).json({
                         connecter : false,
+                        user : {},
                         message: "Email ou mot de passe incorrect"
                     });
                 }
@@ -77,8 +77,9 @@ class GerantControl {
         this.gerant.getGerant((err, data) => {
             if (err) {
                 res.status(500).send({
-                    message:
-                        err.message || "Some error occurred while retrieving gerants."
+                    connecter : false,
+                    user : {},
+                    message: err.message || "Some error occurred while retrieving gerants."
                 });
             } else res.send(data);
         });

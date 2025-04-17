@@ -24,7 +24,7 @@ const Connexion = () => {
     },[]);
 
     useEffect(() => {
-        if (Object.keys(user).length >= 1){
+        if (Object.keys(user).length > 0){
             navigate('/utilisateur'); // Redirige vers la page de profil   
         }
     }, [user, navigate]);
