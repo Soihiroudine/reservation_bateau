@@ -23,18 +23,15 @@ class BateauControl {
         });
     }
 
-    getBateauByIdGerant(req, res) {
+    getBateauByIdGerant(req, callback) {
 
         const idGerant = req.session.user.idGerant;
 
         this.bateau.getBateauByIdGerant(idGerant, (err, data) => {
             if (err) {
-                res.status(500).send({
-                    message:
-                        err.message || "Some error occurred while retrieving bateau."
-                });
+                return callback(err, null);
             } else {
-                res.status(200).json({data : data});
+                callback(null, data);
             }
         });
     }

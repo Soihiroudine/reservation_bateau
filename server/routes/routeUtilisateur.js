@@ -89,5 +89,33 @@ router.get("/api/utilisateur/profil", (req, res) => {
     });
 });
 
+router.get("/api/utilisateur/affichage", (req, res) => {
+    if(req.session.user) {
+        BateauControl.getBateauByIdGerant(req, (err, bateaux) => {
+            if (err) {
+                return res.status(500).json({
+                    connecter : true,
+                    user : req.session.user,
+                    message : "Erreur lors de la récupération des bateaux.",
+                    bateau : []
+                });
+            }
+            return res.status(200).json({
+                connecter : true,
+                user : req.session.user,
+                message : MESSAGE_CONNECTER,
+                bateau : bateaux
+            });
+        });
+    }else {
+        return res.status(200).json({
+            connecter : false, 
+            user : {},
+            message : MESSAGE_NON_CONNECTER,
+            bateau : []
+        });
+    }
+});
+
 
 module.exports = router;
