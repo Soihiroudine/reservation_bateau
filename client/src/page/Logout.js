@@ -23,9 +23,6 @@ const Logout = () => {
         .catch(error => {
             console.error('Erreur lors de la récuperation du message', error);
         });
-        // .finally(() => {
-        //     setLoading(false);
-        // });
     }, [navigate, connecter]);
 
     return (
