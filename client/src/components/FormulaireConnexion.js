@@ -19,16 +19,17 @@ const FormConnexion = () => {
         try {
             const reponse = await axios.post("/api/utilisateur/connexion", formDonnee);
             
-            const status = reponse.status;
+            // const status = reponse.status;
+            const data = reponse.data.user;
             const messageServeur = reponse.data.message;
 
             setMessage(messageServeur);
-            
-            console.log("mote de passe inrehiyfguygs_odg_ g");
-            if (status === 500) {
-                alert("Mote incirre");
+
+            if (Object.keys(data).length === 0) {
+                setMessage(messageServeur);
                 navigate('/connexion');
-            }else if (status === 200) {
+                return;
+            }else if (Object.keys(data).length > 0) {
                 alert("Connexion réussie");
                 navigate('/utilisateur'); // Redirige vers la page de profil
             }

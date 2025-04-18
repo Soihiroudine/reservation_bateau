@@ -1,0 +1,41 @@
+.logout-page {
+    display: flex;
+    justify-content: center;
+    padding: 10em;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(to bottom,  #17202a, #02436a);
+    color: #17202a;
+}
+
+.logout-page  h1{
+    color:  #f7f9f9;
+    margin: 1em 0;
+    border-bottom: 3px solid  #f7f9f9;
+    padding-bottom: 1em ;
+}
+
+.logout-page div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.logout-page div button {
+    border: none;
+    outline:  none;
+    padding: 0.5em 0.2em;
+    margin: 0.5em;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #f7f9f9;
+    color: #17202a;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+}
+
+.logout-page div button:hover {
+    background: linear-gradient(to bottom,  #17202a, #02436a);
+    color: #f7f9f9;
+}

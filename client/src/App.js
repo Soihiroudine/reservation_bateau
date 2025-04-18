@@ -6,6 +6,8 @@ import Reservation from './page/Reservation';
 import Utilisateur from './page/Utilisateur';
 import Connexion from './page/Connexion';
 import Inscription from './page/Inscription';
+import Logout from './page/Logout';
+import NonExistant from './page/NonExistant';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Route path="/utilisateur" element={<Utilisateur />} />
         <Route path="/connexion" element={<Connexion />} />
         <Route path="/inscription" element={<Inscription />} />
+        <Route path="/logout" element={<Logout />} /> {/* Redirection vers la page d'accueil après déconnexion */}
+        <Route path="*" element={<NonExistant />} /> {/* Redirection vers la page d'accueil pour les routes non définies */}
       </Routes>
     </Router>
   );

@@ -42,7 +42,7 @@ router.get("/api/utilisateur/inscription", (req, res) => {
             message : MESSAGE_CONNECTER
         });
     }
-    res.status(500).json({
+    res.json({
         connecter : false,
         user : {},
         message : MESSAGE_NON_CONNECTER
@@ -82,7 +82,7 @@ router.get("/api/utilisateur/profil", (req, res) => {
             message : MESSAGE_CONNECTER
         });
     }
-    res.status(500).json({
+    res.json({
         connecter : false, 
         user : {},
         message : MESSAGE_NON_CONNECTER

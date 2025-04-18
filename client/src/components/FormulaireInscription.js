@@ -29,10 +29,9 @@ const FormInscription = () => {
             if (reponse.data.message === "Gerant ajouté") {
                 // Enregistrer l'utilisateur dans le localStorage
                 setTimeout(() => {
-                    console.log("rédirection réussie");
                     alert("Inscription réussie");
                     navigate('/connexion'); // Redirige vers la page de connexion
-                }, 2000); // Attendre 2 secondes avant la redirection
+                });
             }
         } catch (error) {
             // setMessage("Erreur lors de l'inscription");

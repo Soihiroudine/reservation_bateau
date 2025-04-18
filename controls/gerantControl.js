@@ -18,7 +18,7 @@ class GerantControl {
 
         this.gerant.addGerant(nom, prenom, email, hash, (err) => {
             if (err) {
-                res.status(500).json({
+                res.json({
                     connecter : false,
                     user : {},
                     message: "Quelques problèmes sont arriver à la création du Gerant."
@@ -40,7 +40,7 @@ class GerantControl {
 
         this.gerant.getGerantByEmail(email, (err, data) => {
             if (err) {
-                res.status(500).json({
+                res.json({
                     connecter: false,
                     user: {},
                     message: "Une erreur lors de la connexion est survenue."
@@ -62,7 +62,7 @@ class GerantControl {
                             message: "Gerant connecté" 
                         });
                     } else {
-                        res.status(500).json({
+                        res.json({
                             connecter : false,
                             user : {},
                             message: "Email ou mot de passe incorrect"
@@ -77,7 +77,7 @@ class GerantControl {
     getGerant(req, res) {
         this.gerant.getGerant((err, data) => {
             if (err) {
-                res.status(500).json({
+                res.json({
                     connecter : false,
                     user : {},
                     message: "Une erreur s'est produite lors de la récupération des gérants."

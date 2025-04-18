@@ -1,45 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import "../css/logout.css";
+import logo from './../assets/logo.png';
 
-const Accueil = () => {
+const Logout = () => {
 
     const [connecter, setConnecter] = useState(false);
-    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {
         // Appel API vers le backend
         axios.get('/api/utilisateur/deconnexion')
             .then(response => {
-            setConnecter(response.data.connecter);
+                setConnecter(response.data.connecter);
+                if (!connecter) {
+                    setTimeout(() => {
+                        navigate('/connexion'); // Redirige vers la page de connexion
+                    }, [1000]); // Redirige vers la page d'accueil après 2 secondes
+                }
         })
         .catch(error => {
             console.error('Erreur lors de la récuperation du message', error);
-        })
-        .finally(() => {
-            setLoading(false);
         });
-
-    
-    }, []);
-
-    useEffect(() => {
-        if (!loading && )
-    }, [loading]);
-
-    if (loading) {
-        return <div>Chargement...</div>; // Afficher un message de chargement
-    }
+        // .finally(() => {
+        //     setLoading(false);
+        // });
+    }, [navigate, connecter]);
 
     return (
         <div className="logout-page">
-            <h1>Bienvenue sur notre site de réservation de bateau</h1>
-            <p>Vous êtes déconnecté</p>
-            <button onClick={() => navigate('/connexion')}>Se connecter</button>
-            <button onClick={() => navigate('/inscription')}>S'inscrire</button>
+            <a href='/'><img src={logo} alt="logo" /></a>
+            <h1>Vous êtes déconnecté</h1>
         </div>
     );
 }
 
-export default Accueil;
+export default Logout;
