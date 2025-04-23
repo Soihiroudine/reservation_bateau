@@ -21,7 +21,7 @@ const FormConnexion = () => {
         };
 
         try {
-            const reponse = await axios.post("/api/utilisateur/connexion", formDonnee);
+            const reponse = await axios.post('/api/utilisateur/connexion', formDonnee, { withCredentials: true });
             
             // const status = reponse.status;
             const data = reponse.data.user;

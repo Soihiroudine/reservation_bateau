@@ -18,15 +18,19 @@ const Utilisateur = () => {
 
     useEffect(() => {
         // Appel API vers le backend pour récupérer les bateaux du gérant
-        axios.get('/api/utilisateur/affichage')
+        axios.get('/api/utilisateur/affichage', { withCredentials: true })
             .then(response => {
                 setUser(response.data.user);
                 setBateau(response.data.bateau); // On récupère les bateaux du gérant
                 // setReservations(response.data.reservations); // On récupère les réservations du gérant
             })
             .catch(error => {
-                console.error('Erreur lors de la récupération des bateaux', error);
-                // navigate('/connexion'); // Redirige vers la page de connexion en cas d'erreur
+                // Si le statut de la réponse est 401 (Utilisateur non connecté)
+                if (error.response && error.response.status === 401) {
+                    notification('Vous devez vous connecter pour accéder à cette page', "info");
+                } else {
+                    console.error("Erreur lors de la récupération des bateaux", error);
+                }
             })
             .finally(() => {
                 setLoading(false); // Fin du chargement
@@ -34,17 +38,21 @@ const Utilisateur = () => {
     }, []);
 
     useEffect(() => {
-        if (!loading && Object.keys(user).length > 0) {
-            notification('Vous devez vous connecter pour accéder à cette page', "info"); // 💥 Toast d'information
-            setTimeout(() => {
-                navigate('/connexion'); // Redirige vers la page de connexion après 2 secondes
-            }, 2000);
+        if (!loading) {
+            if (!user || !user.idGerant) {
+                notification('Vous devez vous connecter pour accéder à cette page', "info");
+                setTimeout(() => {
+                    navigate('/connexion');
+                }, 2000);
+            }
         }
     }, [loading, user, navigate]);
+    
 
-    if (loading) {
-        return <div>Chargement...</div>; // Afficher un message de chargement
+    if (!loading && (!user || !user.idGerant)) {
+        return <div>Redirection en cours...</div>; // ou un spinner
     }
+    
 
     return (
         <div>
@@ -63,9 +71,7 @@ const Utilisateur = () => {
                         {bateau.length === 0 ? (
                             <p>Vous n'avez pas encore de bateaux enregistrés.</p>
                         ) : (
-                            <ul>
-                                {bateau.map(b => <li key={b.idBateau}>{b.nomBateau}</li>)}
-                            </ul>
+                            bateau.map(b => <li key={b.idBateau}>{b.nomBateau}</li>)
                         )}
                     </ul>
 
