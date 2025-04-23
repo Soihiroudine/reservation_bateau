@@ -15,7 +15,9 @@
   "type": "commonjs",
   "main": "serveur.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon serveur.js"
+
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",

@@ -19,7 +19,7 @@ const Utilisateur = () => {
         axios.get('/api/utilisateur/affichage')
             .then(response => {
                 setUser(response.data.user);
-                // setBateau(response.data.bateau); // On récupère les bateaux du gérant
+                setBateau(response.data.bateau); // On récupère les bateaux du gérant
                 // setReservations(response.data.reservations); // On récupère les réservations du gérant
             })
             .catch(error => {
@@ -32,7 +32,7 @@ const Utilisateur = () => {
     }, []);
 
     useEffect(() => {
-        if (!loading && (!user || !user.nomGerant)) {
+        if (!loading && Object.keys(user).length > 0) {
             alert('Vous devez vous connecter pour accéder à cette page');
             navigate('/connexion');
         }

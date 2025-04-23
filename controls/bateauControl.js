@@ -31,7 +31,7 @@ class BateauControl {
             if (err) {
                 return callback(err, null);
             } else {
-                callback(null, data);
+                return callback(null, data);
             }
         });
     }

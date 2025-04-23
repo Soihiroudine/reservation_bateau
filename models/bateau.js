@@ -21,7 +21,7 @@ class Bateau {
             if (err) {
                 return callback(err, null);
             }
-            callback(null, res);
+            return callback(null, res);
         });
     }
 }
