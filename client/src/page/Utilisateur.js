@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import NavbarGerant from '../components/NavbarGerant';
 // import { Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import FormAjoutBateau from '../components/FormAjoutBateau';
 
 const Utilisateur = () => {
 
@@ -65,7 +66,7 @@ const Utilisateur = () => {
                         )}
                     </ul>
 
-                    <a href="/ajouter-bateau" className="btn btn-primary">Ajouter un bateau</a>
+                    <FormAjoutBateau /> {/* Formulaire d'ajout de bateau */}
                 </div>
 
 

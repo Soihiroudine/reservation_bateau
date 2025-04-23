@@ -1,0 +1,62 @@
+button {
+    cursor: pointer;
+    padding: 0.5em 0.7em;
+    margin: 0.4em;
+    background-color: #004369;
+    color: #f8f9fa;
+    border-radius: 0.2em;
+    outline: none;
+    border: none;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1), 0.2s;
+    font-size: 1.2em;
+    border-bottom: 3px solid transparent;
+}
+
+button:hover {
+    background-color: #f8f9fa;
+    color: #004369;
+    border-radius: 0.2em 0.2em 0 0;
+    border-bottom: 3px solid #004369;
+    transform: scale(1.03);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.modal-header {
+    background-color: #eee;
+    top: 50%;
+    left: 50%;
+    position: fixed;
+    width: 50%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translate(-50%, -50%);
+    padding: 30px;
+}
+
+.modal-header h2 {
+    font-size: 24px;
+    margin: 0;
+    color: #333;
+    text-align: center;
+}
+
+.modal-header form {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header form div {
+    margin: 1em 0 1em 1em;
+}
+
+.modal-header form input[type="text"],
+.modal-header form input[type="number"]
+{
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
