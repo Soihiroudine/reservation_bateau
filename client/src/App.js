@@ -1,6 +1,8 @@
 // import React, { useEffect, useState } from 'react';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+
 import Accueil from './page/Accueil';
 import Reservation from './page/Reservation';
 import Utilisateur from './page/Utilisateur';
@@ -12,6 +14,7 @@ import NonExistant from './page/NonExistant';
 function App() {
   return (
     <Router>
+      <ToastContainer /> {/* Composant pour afficher les notifications */}
 
       {/* Définition des routes*/}
 

@@ -2,13 +2,15 @@ import axios from 'axios';
 import React, { /* useEffect, */ useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { notification } from "./ToastNotification";
+
 const FormInscription = () => {
 
     const [nom, setNom] = useState('');
     const [prenom, setPrenom] = useState('');
     const [emailInscription, setEmailInscription] = useState('');
     const [mdpInscription, setMdpInscription] = useState('');
-    // const [message, setMessage] = useState('');
+    const [message, setMessage] = useState('');
     const navigate = useNavigate(); // Hook de React Router pour la redirection
 
     const handleSubmit = async (event) => {
@@ -23,19 +25,31 @@ const FormInscription = () => {
 
         try {
             const reponse = await axios.post("/api/utilisateur/inscription", formDonnee);
-            // setMessage(reponse.data.message);
+            setMessage(reponse.data.message);
 
             // Rediriger vers la page de connexion
-            if (reponse.data.message === "Gerant ajouté") {
+            if (message === "Gerant ajouté") {
                 // Enregistrer l'utilisateur dans le localStorage
+                notification(message, "success"); // 💥 Toast de succès
+
                 setTimeout(() => {
-                    alert("Inscription réussie");
                     navigate('/connexion'); // Redirige vers la page de connexion
-                });
+                }
+                , 1000);
+                
+            } else if (message === "Gerant non ajouté") {
+                setMessage(reponse.data.message);
+
+                notification(message, "warn"); // 💥 Toast d'erreur
+
+                setTimeout(() => {
+                    navigate('/inscription'); // Redirige vers la page d'inscription
+                }, 1000);
             }
         } catch (error) {
-            // setMessage("Erreur lors de l'inscription");
-            console.error(error.message);
+            setMessage(error.message);
+            notification("Erreur lors de l'inscription : " + message, "error"); // 💥 Toast d'erreur
+            console.error(message);
         }
         
     }
