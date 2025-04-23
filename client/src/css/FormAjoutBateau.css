@@ -21,6 +21,16 @@ button:hover {
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
+.annuler {
+    background-color: #dc3545;
+    color: #fff;
+}
+.annuler:hover {
+    background-color: #fff;
+    color: #dc3545;
+    border-bottom: 3px solid #dc3545;
+}
+
 .modal-header {
     background-color: #eee;
     top: 50%;

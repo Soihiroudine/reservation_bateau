@@ -101,7 +101,7 @@ const FormAjoutBateau = () => {
                         </div>
                         <div className='bouton'>
                             <button type="submit" className="btn btn-primary">Ajouter</button>
-                            <button type="button" onClick={closeModal} className="btn btn-secondary">Annuler</button>
+                            <button type="button" onClick={closeModal} className="annuler">Annuler</button>
                         </div>
                     </form>
                 </div>
