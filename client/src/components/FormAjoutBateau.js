@@ -50,7 +50,7 @@ const FormAjoutBateau = () => {
                 notification("Bateau ajouté avec succès 🎉", "success");
                 closeModal(); // Fermer la modale après l'ajout réussi
                 setTimeout(() => {
-                    navigate('/utilisateur'); // Redirige vers la page utilisateur après 2 secondes
+                    navigate('/utilisateur'); // Redirige vers la page utilisateur après 1 secondes
                 }, 1000);
             } else {
                 notification("Erreur lors de l'ajout du bateau", "error"); // 💥 Toast d'erreur

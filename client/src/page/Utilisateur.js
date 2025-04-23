@@ -5,6 +5,7 @@ import NavbarGerant from '../components/NavbarGerant';
 // import { Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import FormAjoutBateau from '../components/FormAjoutBateau';
+import { notification } from "../components/ToastNotification";
 
 const Utilisateur = () => {
 
@@ -34,8 +35,10 @@ const Utilisateur = () => {
 
     useEffect(() => {
         if (!loading && Object.keys(user).length > 0) {
-            alert('Vous devez vous connecter pour accéder à cette page');
-            navigate('/connexion');
+            notification('Vous devez vous connecter pour accéder à cette page', "info"); // 💥 Toast d'information
+            setTimeout(() => {
+                navigate('/connexion'); // Redirige vers la page de connexion après 2 secondes
+            }, 2000);
         }
     }, [loading, user, navigate]);
 
@@ -68,18 +71,6 @@ const Utilisateur = () => {
 
                     <FormAjoutBateau /> {/* Formulaire d'ajout de bateau */}
                 </div>
-
-
-                {/* On affiche l'historique des réservation qui a été fait pour un bateau du gérant */}
-                {/* <div className="historiqueReservation"> */}
-                {/* <h2>Historique des réservations</h2> */}
-                {/* Afficher l'historique des réservations ici */}
-                {/* <ul>
-                        {user.reservations && user.reservations.map((reservation, index) => (
-                            <li key={index}>{reservation.nomBateau} - {reservation.dateReservation}</li>
-                        ))}
-                    </ul> */}
-                {/* </div> */}
             </div>
             <h1>Bienvenue, {user.nomGerant}</h1>
         </div>
