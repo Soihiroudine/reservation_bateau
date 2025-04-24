@@ -58,7 +58,7 @@ const FormInscription = () => {
         <>
         <form onSubmit={handleSubmit}>
             <div>
-                <label for="nom">Nom</label>
+                <label htmlFor="nom">Nom</label>
                 <input type='text'
                     placeholder="Nom"
                     id='nom' 
@@ -68,7 +68,7 @@ const FormInscription = () => {
                     onChange={(e) => setNom(e.target.value)} />
             </div>
             <div>
-                <label for="prenom">Prenom</label>
+                <label htmlFor="prenom">Prenom</label>
                 <input type='text' 
                     placeholder="Prenom" 
                     id='prenom' 
@@ -78,7 +78,7 @@ const FormInscription = () => {
                     onChange={(e) => setPrenom(e.target.value)} />
             </div>
             <div>
-                <label for="emailInscription">E-mail</label>
+                <label htmlFor="emailInscription">E-mail</label>
                 <input type='email' 
                     placeholder="email" 
                     id='emailInscription' 
@@ -88,7 +88,7 @@ const FormInscription = () => {
                     onChange={(e) => setEmailInscription(e.target.value)} />
             </div>
             <div>
-                <label for="mdpInscription">Mot de passe</label>
+                <label htmlFor="mdpInscription">Mot de passe</label>
                 <input type='password'
                     placeholder="mot de passe"
                     id='mdpInscription'

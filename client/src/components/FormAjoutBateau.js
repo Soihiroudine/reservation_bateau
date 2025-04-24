@@ -77,7 +77,7 @@ const FormAjoutBateau = () => {
                     <h2>Ajouter un bateau</h2>
                     <form onSubmit={handleSubmit}>
                         <div>
-                            <label for="nomBateau">Nom du bateau</label>
+                            <label htmlFor="nomBateau">Nom du bateau</label>
                             <input type='text'
                                 placeholder="Nom du bateau"
                                 id='nomBateau'
@@ -89,7 +89,7 @@ const FormAjoutBateau = () => {
                         </div>
 
                         <div>
-                            <label for="capacite">Capacité (en personnes)</label>
+                            <label htmlFor="capacite">Capacité (en personnes)</label>
                             <input type='number'
                                 placeholder="Capacité"
                                 id='capacite'

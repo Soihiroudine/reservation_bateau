@@ -37,6 +37,7 @@ const FormConnexion = () => {
                 return;
             }else if (Object.keys(data).length > 0) {
                 notification("Connexion réussie 🎉", "success");
+                setMessage(messageServeur);
                 setTimeout(() => {
                     navigate('/utilisateur'); // Redirige vers la page utilisateur après 2 secondes
                 }
@@ -52,7 +53,7 @@ const FormConnexion = () => {
     return (
         <form onSubmit={handleSubmit}>
             <div>
-                <label for="emailConnexion">E-mail</label>
+                <label htmlFor="emailConnexion">E-mail</label>
                 <input type='email' 
                     placeholder="email" 
                     id='emailConnexion' 
@@ -62,7 +63,7 @@ const FormConnexion = () => {
                     onChange={(e) => setEmail(e.target.value)} />
             </div>
             <div>
-                <label for="mdpConnexion">Mot de passe</label>
+                <label htmlFor="mdpConnexion">Mot de passe</label>
                 <input type='password' 
                     placeholder="mot de passe" 
                     id='mdpConnexion' 

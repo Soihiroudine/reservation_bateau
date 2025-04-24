@@ -21,6 +21,11 @@ button:hover {
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
+button:active {
+    transform: scale(0.95);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
 .annuler {
     background-color: #dc3545;
     color: #fff;
@@ -60,6 +65,11 @@ button:hover {
     margin: 1em 0 1em 1em;
 }
 
+.modal-header form div label {
+    font-size: 1.2em;
+    color: #333;
+}
+
 .modal-header form input[type="text"],
 .modal-header form input[type="number"]
 {
@@ -68,5 +78,14 @@ button:hover {
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 1.2em;
+}
+
+.modal-header form input[type="text"]:focus,
+.modal-header form input[type="number"]:focus {
+    border-color: #004369;
+    outline: none;
+    box-shadow: 0 0 0 4px #fff,
+    0 0 0 8px rgba(0, 67, 105, 0.5);
+    background-color: #fff;
 }

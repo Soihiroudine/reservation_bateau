@@ -20,6 +20,8 @@ const Utilisateur = () => {
         // Appel API vers le backend pour récupérer les bateaux du gérant
         axios.get('/api/utilisateur/affichage', { withCredentials: true })
             .then(response => {
+                console.log("Réponse de l'API :", response.data);
+                // Si l'utilisateur est connecté, on récupère les bateaux du gérant
                 setUser(response.data.user);
                 setBateau(response.data.bateau); // On récupère les bateaux du gérant
                 // setReservations(response.data.reservations); // On récupère les réservations du gérant
@@ -47,40 +49,40 @@ const Utilisateur = () => {
             }
         }
     }, [loading, user, navigate]);
-    
+
 
     if (!loading && (!user || !user.idGerant)) {
         return <div>Redirection en cours...</div>; // ou un spinner
-    }
-    
+    } else {
+        return (
 
-    return (
-        <div>
-            <Header>
-                <NavbarGerant nomUtilisateur={user.nomGerant} />
-            </Header>
+            <div>
+                <Header>
+                    <NavbarGerant nomUtilisateur={user.nomGerant} />
+                </Header>
 
-            <div className="container">
+                <div className="container">
 
-                {/* On affiche les bateaux que le gérant possède */}
+                    {/* On affiche les bateaux que le gérant possède */}
 
-                <div className="listeBateau">
-                    <h2>Liste de vos bateaux</h2>
-                    {/* Afficher la liste des bateaux ici */}
-                    <ul>
-                        {bateau.length === 0 ? (
-                            <p>Vous n'avez pas encore de bateaux enregistrés.</p>
-                        ) : (
-                            bateau.map(b => <li key={b.idBateau}>{b.nomBateau}</li>)
-                        )}
-                    </ul>
+                    <div className="listeBateau">
+                        <h2>Liste de vos bateaux</h2>
+                        {/* Afficher la liste des bateaux ici */}
+                        <ul>
+                            {bateau.length === 0 ? (
+                                <p>Vous n'avez pas encore de bateaux enregistrés.</p>
+                            ) : (
+                                bateau.map(b => <li key={b.idBateau}>{b.nomBateau}</li>)
+                            )}
+                        </ul>
 
-                    <FormAjoutBateau /> {/* Formulaire d'ajout de bateau */}
+                        <FormAjoutBateau /> {/* Formulaire d'ajout de bateau */}
+                    </div>
                 </div>
+                <h1>Bienvenue, {user.nomGerant}</h1>
             </div>
-            <h1>Bienvenue, {user.nomGerant}</h1>
-        </div>
-    );
+        );
+    }
 }
 
 export default Utilisateur;

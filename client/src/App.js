@@ -2,6 +2,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import Modal from 'react-modal';
 
 import Accueil from './page/Accueil';
 import Reservation from './page/Reservation';
@@ -10,6 +11,8 @@ import Connexion from './page/Connexion';
 import Inscription from './page/Inscription';
 import Logout from './page/Logout';
 import NonExistant from './page/NonExistant';
+
+Modal.setAppElement('#root'); // Pour l'accessibilité des modales
 
 function App() {
   return (

@@ -49,7 +49,7 @@ class BateauControl {
 
     getBateauByIdGerant(req) {
         if (!req.session.user) {
-            return res.status(200).json({
+            return res.status(401).json({
                 connecter : false,
                 user : {},
                 message : "Utilisateur non connecté",
@@ -63,8 +63,8 @@ class BateauControl {
             if (err) {
                 console.error("Erreur lors de la récupération des bateaux :", err);
                 return res.status(500).json({
-                    connecter : true,
-                    user : req.session.user,
+                    connecter : false,
+                    user : {},
                     message : "Erreur lors de la récupération des bateaux.",
                     bateau : []
                 });
