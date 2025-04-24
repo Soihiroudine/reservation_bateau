@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const gerantControl = require("./../../controls/gerantControl");
-const BateauControl = require("./../../controls/bateauControl");
+const gerantControl = require("../../controllers/gerantControl");
+const BateauControl = require("../../controllers/bateauControl");
 
 
 const MESSAGE_CONNECTER = "Utilisateur connecté";
