@@ -59,8 +59,8 @@ router.get("/api/utilisateur/deconnexion", (req, res) => {
     req.session.destroy((err) => {
         if (err) {
             return res.status(500).json({
-                connecter : true,
-                user : req.session.user,
+                connecter : false,
+                user : {},
                 message : 'Erreur lors de la déconnexion.'
             });
         }
@@ -90,29 +90,31 @@ router.get("/api/utilisateur/profil", (req, res) => {
 });
 
 router.get("/api/utilisateur/affichage", (req, res) => {
-    if(req.session.user) {
-        BateauControl.getBateauByIdGerant(req, (err, bateaux) => {
-            if (err) {
-                return res.status(500).json({
-                    connecter : true,
-                    user : req.session.user,
-                    message : "Erreur lors de la récupération des bateaux.",
-                    bateau : []
-                });
-            }
-            return res.status(200).json({
-                connecter : true,
-                user : req.session.user,
-                message : MESSAGE_CONNECTER,
-                bateau : bateaux
-            });
+    if (req.session.user) {
+        // Si l'utilisateur est connecté, on récupère les bateaux du gérant
+        console.log("ID du gérant :", req.session.user.idGerant);
+        BateauControl.getBateauByIdGerant.bind(BateauControl);
+    } else {
+        // Si l'utilisateur n'est pas connecté, on renvoie un statut 401 (Unauthorized)
+        return res.status(401).json({
+            connecter: false,
+            user: {},
+            message: MESSAGE_NON_CONNECTER, // Message approprié
+            bateau: [],
         });
+    }
+});
+
+  
+
+router.post("/api/utilisateur/ajout-bateau", (req, res) => {
+    if(req.session.user) {
+        BateauControl.addBateau.bind(BateauControl);
     }else {
         return res.status(200).json({
             connecter : false, 
             user : {},
-            message : MESSAGE_NON_CONNECTER,
-            bateau : []
+            message : MESSAGE_NON_CONNECTER
         });
     }
 });

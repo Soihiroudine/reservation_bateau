@@ -6,7 +6,13 @@ const NavbarGerant = ({nomUtilisateur}) => {
             <ul>
                 <li><a href="/">Accueil</a></li>
                 <li><a href="/reservation">Reservation</a></li>
-                <li><a href="/profil">{nomUtilisateur}</a></li>
+                {
+                    nomUtilisateur === "admin" || nomUtilisateur === "administrateur" ? (
+                        <li><a href="/admin">Administrateur</a></li>
+                    ) : (
+                        <li><a href="/profil">{nomUtilisateur}</a></li>
+                    )
+                }
                 <li><a href="/logout">logout</a></li>
             </ul>
         </nav>

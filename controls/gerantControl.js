@@ -18,18 +18,27 @@ class GerantControl {
 
         this.gerant.addGerant(nom, prenom, email, hash, (err) => {
             if (err) {
-                res.json({
+                console.log("Erreur lors de l'ajout du gérant :", err);
+                return res.status(500).json({
                     connecter : false,
                     user : {},
-                    message: "Quelques problèmes sont arriver à la création du Gerant."
+                    message: "Gerant non ajouté"
+                });
+            }else if (err.code === "ER_DUP_ENTRY") {
+                console.log("Email déjà utilisé");
+                return res.status(400).json({
+                    connecter : false,
+                    user : {},
+                    message: "Email déjà utilisé"
                 });
             }
-            res.status(200).json({
+            // On envoie un message de succès
+            console.log("Gérant ajouté avec succès");
+            return res.status(200).json({
                 connecter : false,
                 user : {},
                 message: "Gerant ajouté"
             });
-            console.log("Gerant ajouté");
         });
     }
 
@@ -38,9 +47,18 @@ class GerantControl {
         const email = req.body.emailConnexion;
         const password = req.body.mdpConnexion;
 
+        if (!email || !password) {
+            return res.status(400).json({
+                connecter : false,
+                user : {},
+                message: "Email ou mot de passe manquant"
+            });
+        }
+
         this.gerant.getGerantByEmail(email, (err, data) => {
             if (err) {
-                res.json({
+                console.error("Erreur lors de la connexion :", err);
+                return res.status(500).json({
                     connecter: false,
                     user: {},
                     message: "Une erreur lors de la connexion est survenue."
@@ -55,14 +73,31 @@ class GerantControl {
                     if (result) {
                         // res.send(data);
                         req.session.user = data[0];
+                        console.log("Gérant connecté avec succès!");
                         
-                        res.status(200).json({
+                        // On envoie un message de succès
+                        return res.status(200).json({
                             connecter : true,
                             user : req.session.user,
-                            message: "Gerant connecté" 
+                            message: "Vous etes bien connecté" 
                         });
-                    } else {
-                        res.json({
+                    } else if (!result) {
+                        console.log("Mot de passe incorrect");
+                        return res.status(400).json({
+                            connecter : false,
+                            user : {},
+                            message: "Email ou mot de passe incorrect"
+                        });
+                    }else if (data.length === 0) {
+                        console.log("Email non trouvé");
+                        return res.status(400).json({
+                            connecter : false,
+                            user : {},
+                            message: "Email ou mot de passe incorrect"
+                        });
+                    }else {
+                        console.log("Mot de passe incorrect");
+                        return res.status(400).json({
                             connecter : false,
                             user : {},
                             message: "Email ou mot de passe incorrect"
@@ -77,17 +112,20 @@ class GerantControl {
     getGerant(req, res) {
         this.gerant.getGerant((err, data) => {
             if (err) {
-                res.json({
+                console.error("Erreur lors de la récupération des gérants :", err);
+                return res.status(500).json({
                     connecter : false,
                     user : {},
                     message: "Une erreur s'est produite lors de la récupération des gérants."
                 });
             } else {
-                res.status(200).json({
-                connecter : true,
-                user : req.session.user,
-                message: "Réussie"
-            });}
+                console.log("Gérants récupérés avec succès");
+                return res.status(200).json({
+                    connecter : true,
+                    user : req.session.user,
+                    message: "Gérants récupérés avec succès"
+                });
+            }
         });
     }
 }

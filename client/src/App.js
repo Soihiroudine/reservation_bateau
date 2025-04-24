@@ -17,6 +17,7 @@ function App() {
       <ToastContainer /> {/* Composant pour afficher les notifications */}
 
       {/* Définition des routes*/}
+      {/* Header */}
 
       <Routes>
         <Route path="/" element={<Accueil />} />

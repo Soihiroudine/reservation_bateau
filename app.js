@@ -20,7 +20,11 @@ const routeUtilisateur = require("./server/routes/routeUtilisateur");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:3000', // Remplacez par l'URL de votre frontend
+    credentials: true, // Autorise les cookies et les en-têtes d'autorisation
+    methods: ['GET', 'POST'] // Méthodes autorisées
+}));
 
 // app.use(express.json());
 
