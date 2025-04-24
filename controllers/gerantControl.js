@@ -7,6 +7,10 @@ class GerantControl {
         this.gerant = new Gerant();
     }
 
+    // On ajoute un gérant
+    // On vérifie si le gérant existe déjà dans la base de données
+    // Si oui, on renvoie une erreur
+    // Sinon, on ajoute le gérant dans la base de données
     addGerant(req, res) {
         const nom = req.body.nom;
         const prenom = req.body.prenom;
@@ -42,7 +46,12 @@ class GerantControl {
         });
     }
 
-    // connection d'un gerant
+    // On veut se connecter en tant que gérant
+    // On vérifie si le gérant existe déjà dans la base de données
+    // Si oui, on compare le mot de passe en clair avec le mot de passe crypté
+    // Si le mot de passe est correct, on renvoie un message de succès
+    // Sinon, on renvoie une erreur
+    // On utilise la méthode getGerantByEmail de la classe Gerant pour récupérer le gérant par son email
     connectionGerant(req, res) {
         const email = req.body.emailConnexion;
         const password = req.body.mdpConnexion;
@@ -108,7 +117,10 @@ class GerantControl {
         });
     }
 
-    // Retrieve all Gerants from the database.
+    // On veut récupérer tous les gérants
+    // On utilise la méthode getGerant de la classe Gerant pour récupérer tous les gérants
+    // On renvoie un message de succès
+    // Si une erreur se produit, on renvoie un message d'erreur
     getGerant(req, res) {
         this.gerant.getGerant((err, data) => {
             if (err) {

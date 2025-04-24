@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { notification } from "./ToastNotification";
 
-
-
 const FormConnexion = () => {
     const [email, setEmail] = useState('');
     const [mdpConnexion, setMdpConnexion] = useState('');
