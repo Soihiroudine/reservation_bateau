@@ -68,13 +68,14 @@ const Utilisateur = () => {
                     <div className="listeBateau">
                         <h2>Liste de vos bateaux</h2>
                         {/* Afficher la liste des bateaux ici */}
-                        <ul>
-                            {bateau.length === 0 ? (
+                        { console.log("Liste des bateaux :", bateau)}
+                        {/* <ul>
+                            {bateau === 0 ? (
                                 <p>Vous n'avez pas encore de bateaux enregistrés.</p>
                             ) : (
                                 bateau.map(b => <li key={b.idBateau}>{b.nomBateau}</li>)
                             )}
-                        </ul>
+                        </ul> */}
 
                         <FormAjoutBateau /> {/* Formulaire d'ajout de bateau */}
                     </div>
