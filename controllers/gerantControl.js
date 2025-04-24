@@ -57,7 +57,7 @@ class GerantControl {
         const password = req.body.mdpConnexion;
 
         if (!email || !password) {
-            return res.status(400).json({
+            return res.status(401).json({
                 connecter : false,
                 user : {},
                 message: "Email ou mot de passe manquant"
@@ -92,21 +92,21 @@ class GerantControl {
                         });
                     } else if (!result) {
                         console.log("Mot de passe incorrect");
-                        return res.status(400).json({
+                        return res.status(401).json({
                             connecter : false,
                             user : {},
                             message: "Email ou mot de passe incorrect"
                         });
                     }else if (data.length === 0) {
                         console.log("Email non trouvé");
-                        return res.status(400).json({
+                        return res.status(401).json({
                             connecter : false,
                             user : {},
                             message: "Email ou mot de passe incorrect"
                         });
                     }else {
                         console.log("Mot de passe incorrect");
-                        return res.status(400).json({
+                        return res.status(401).json({
                             connecter : false,
                             user : {},
                             message: "Email ou mot de passe incorrect"

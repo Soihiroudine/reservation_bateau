@@ -16,13 +16,13 @@ const MESSAGE_NON_CONNECTER = "Utilisateur non connecté";
 // route [ Connexion ]
 router.get("/api/utilisateur/connexion", (req, res) => {
     if(req.session.user) {
-        return res.json({
+        return res.status(200).json({
             connecter : true,
             user : req.session.user,
             message : MESSAGE_CONNECTER
         });
     }
-    res.json({
+    return res.status(401).json({
         connecter : false,
         user : {},
         message : MESSAGE_NON_CONNECTER
@@ -42,7 +42,7 @@ router.get("/api/utilisateur/inscription", (req, res) => {
             message : MESSAGE_CONNECTER
         });
     }
-    res.json({
+    return res.status(401).json({
         connecter : false,
         user : {},
         message : MESSAGE_NON_CONNECTER
@@ -82,7 +82,7 @@ router.get("/api/utilisateur/profil", (req, res) => {
             message : MESSAGE_CONNECTER
         });
     }
-    return res.json({
+    return res.status(401).json({
         connecter : false, 
         user : {},
         message : MESSAGE_NON_CONNECTER
@@ -105,24 +105,14 @@ router.get("/api/utilisateur/affichage", (req, res) => {
             connecter: false,
             user: {},
             message: MESSAGE_NON_CONNECTER, // Message approprié
-            bateau: [],
+            bateau: []
         });
     }
 });
-
   
-
-router.post("/api/utilisateur/ajout-bateau", (req, res) => {
-    if(req.session.user) {
-        BateauControl.addBateau.bind(BateauControl);
-    }else {
-        return res.status(200).json({
-            connecter : false, 
-            user : {},
-            message : MESSAGE_NON_CONNECTER
-        });
-    }
-});
+router.post("/api/utilisateur/ajout-bateau",
+    BateauControl.addBateau.bind(BateauControl)
+);
 
 
 module.exports = router;

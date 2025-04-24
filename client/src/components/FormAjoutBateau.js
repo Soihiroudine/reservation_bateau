@@ -41,10 +41,10 @@ const FormAjoutBateau = () => {
         formData.append('capacite', capacite);
 
         try {
-            const response = await axios.post('/api/utilisateur/ajout-bateau', formData);
+            const response = await axios.post('/api/utilisateur/ajout-bateau', formData, {
+                withCredentials: true});
 
-            const messageServeur = response.data.message;
-            setMessage(messageServeur);
+            // const messageServeur = response.data.message;
 
             if (response.status === 200) {
                 notification("Bateau ajouté avec succès 🎉", "success");
@@ -52,12 +52,11 @@ const FormAjoutBateau = () => {
                 setTimeout(() => {
                     navigate('/utilisateur'); // Redirige vers la page utilisateur après 1 secondes
                 }, 1000);
-            } else {
-                notification("Erreur lors de l'ajout du bateau", "error"); // 💥 Toast d'erreur
             }
         } catch (error) {
-            setMessage(error.message);
-            notification("Erreur lors de l'ajout du bateau : " + message, "error"); // 💥 Toast d'erreur
+            const messageErreur = error?.response?.data?.message;
+            setMessage(messageErreur || "Erreur lors de l'ajout du bateau");
+            notification(message, "error"); // 💥 Toast d'erreur
         }
     }
 

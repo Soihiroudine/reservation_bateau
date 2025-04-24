@@ -6,7 +6,7 @@ class BateauControl {
         this.bateau = new Bateau();
     }
 
-    addBateau(req) {
+    addBateau(req, res) {
         if (!req.session.user) {
             return res.status(401).json({
                 connecter: false,
@@ -32,8 +32,8 @@ class BateauControl {
             if (err) {
                 console.error("Erreur lors de l'ajout du bateau :", err);
                 return res.status(500).json({
-                    connecter: true,
-                    user: req.session.user,
+                    connecter: false,
+                    user: {},
                     message: "Erreur lors de l'ajout du bateau.",
                     bateau: []
                 });
@@ -42,7 +42,7 @@ class BateauControl {
                 connecter: true,
                 user: req.session.user,
                 message: "Bateau ajouté avec succès.",
-                bateau: result, // tu peux aussi retourner juste l'ID ou le nouveau bateau ici
+                bateau: data, // tu peux aussi retourner juste l'ID ou le nouveau bateau ici
             });
         });
     }
@@ -63,6 +63,7 @@ class BateauControl {
             if (err) {
                 return [];
             }
+            console.log("Bateaux récupérés :", data);
             return data;
         });
     }

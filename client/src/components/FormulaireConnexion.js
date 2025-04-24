@@ -28,12 +28,7 @@ const FormConnexion = () => {
             setMessage(messageServeur);
             // notification(messageServeur);
 
-            if (Object.keys(data).length === 0) {
-                setMessage(messageServeur);
-                notification("Identifiants incorrects", "warn"); // 💥 Toast d'erreur
-                navigate('/connexion');
-                return;
-            }else if (Object.keys(data).length > 0) {
+            if (Object.keys(data).length > 0) {
                 notification("Connexion réussie 🎉", "success");
                 setMessage(messageServeur);
                 setTimeout(() => {
@@ -43,8 +38,9 @@ const FormConnexion = () => {
             }
             console.log(message);
         }catch (error) {
-            setMessage(error.message);
-            notification("Erreur lors de la connexion : " + error.message, "error"); // 💥 Toast d'erreur
+            const messageErreur = error?.response?.data?.message;
+            setMessage(messageErreur || "Erreur lors de la connexion");
+            notification(message, "error"); // 💥 Toast d'erreur
         }
 
     }

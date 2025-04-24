@@ -20,10 +20,10 @@ const Utilisateur = () => {
         // Appel API vers le backend pour récupérer les bateaux du gérant
         axios.get('/api/utilisateur/affichage', { withCredentials: true })
             .then(response => {
-                console.log("Réponse de l'API :", response.data);
                 // Si l'utilisateur est connecté, on récupère les bateaux du gérant
                 setUser(response.data.user);
                 setBateau(response.data.bateau); // On récupère les bateaux du gérant
+                console.log("Bateaux récupérés :", response?.data?.bateau);
                 // setReservations(response.data.reservations); // On récupère les réservations du gérant
             })
             .catch(error => {
@@ -68,14 +68,16 @@ const Utilisateur = () => {
                     <div className="listeBateau">
                         <h2>Liste de vos bateaux</h2>
                         {/* Afficher la liste des bateaux ici */}
-                        { console.log("Liste des bateaux :", bateau)}
-                        {/* <ul>
-                            {bateau === 0 ? (
-                                <p>Vous n'avez pas encore de bateaux enregistrés.</p>
-                            ) : (
-                                bateau.map(b => <li key={b.idBateau}>{b.nomBateau}</li>)
-                            )}
-                        </ul> */}
+
+                        {Array.isArray(bateau) && bateau.length > 0 ? (
+                            <ul>
+                                {bateau.map(b => <li key={b.idBateau}>{b.nomBateau}</li>)}
+                            </ul>
+                        ) : (
+                            <p>Vous n'avez pas encore de bateaux enregistrés.</p>
+                        )}
+
+
 
                         <FormAjoutBateau /> {/* Formulaire d'ajout de bateau */}
                     </div>
