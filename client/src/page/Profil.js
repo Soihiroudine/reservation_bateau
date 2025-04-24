@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import NavbarGerant from '../components/NavbarGerant';
 import { notification } from '../components/ToastNotification';
 import { useNavigate } from 'react-router-dom';
+import Chargement from '../components/Spinner';
 
 const Profil = () => {
     const [user, setUser] = useState({});
@@ -39,6 +40,9 @@ const Profil = () => {
         }
     }, [loading, user, navigate]);
 
+    if (!loading && (!user || !user.idGerant)) {
+        <Chargement />; // ou un spinner
+    } else {
     return (
         <div>
             <Header>
@@ -46,18 +50,14 @@ const Profil = () => {
             </Header>
             <div className="container">
                 <h1>Profil de l'utilisateur</h1>
-                {loading ? (
-                    <p>Chargement...</p> // Afficher un message de chargement
-                ) : (
-                    <div className="profil-info">
+                 <div className="profil-info">
                         <p><strong>Nom :</strong> {user.nomGerant}</p>
                         <p><strong>Email :</strong> {user.emailGerant}</p>
                         {/* Ajoutez d'autres informations utilisateur ici */}
                     </div>
-                )}
             </div>
         </div>
-    );
+    );}
 }
 
 export default Profil;

@@ -6,6 +6,7 @@ import NavbarGerant from '../components/NavbarGerant';
 import { useNavigate } from 'react-router-dom';
 import FormAjoutBateau from '../components/FormAjoutBateau';
 import { notification } from "../components/ToastNotification";
+import Chargement from '../components/Spinner';
 
 const Utilisateur = () => {
 
@@ -52,7 +53,7 @@ const Utilisateur = () => {
 
 
     if (!loading && (!user || !user.idGerant)) {
-        return <div>Redirection en cours...</div>; // ou un spinner
+        <Chargement /> // ou un spinner
     } else {
         return (
 

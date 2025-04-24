@@ -4,6 +4,7 @@ import SectionAutentification from '../components/SectionAutentification';
 import FormConnexion from '../components/FormulaireConnexion';
 import logo from './../assets/logo.png';
 import { useNavigate } from 'react-router-dom';
+import Chargement from '../components/Spinner';
 
 
 const Connexion = () => {
@@ -34,7 +35,7 @@ const Connexion = () => {
     }, [loading, user, navigate]);
 
     if (loading) {
-        return <div>Chargement...</div>; // Afficher un message de chargement
+        <Chargement />; // ou un spinner
     }
     
     return (

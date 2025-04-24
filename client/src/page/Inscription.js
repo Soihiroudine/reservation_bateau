@@ -4,6 +4,7 @@ import SectionAutentification from '../components/SectionAutentification';
 import FormInscription from '../components/FormulaireInscription';
 import logo from './../assets/logo.png';
 import { useNavigate } from 'react-router-dom';
+import Chargement from '../components/Spinner';
 
 const Inscription = () => {
 
@@ -32,7 +33,7 @@ const Inscription = () => {
     }, [loading, user, navigate]);
     
     if (loading) {
-        return <div>Chargement...</div>; // Afficher un message de chargement
+        <Chargement />; // ou un spinner>
     }
 
     return (
