@@ -92,13 +92,7 @@ router.get("/api/utilisateur/profil", (req, res) => {
 router.get("/api/utilisateur/affichage", (req, res) => {
     if (req.session.user) {
         // Si l'utilisateur est connecté, on récupère les bateaux du gérant
-        console.log("ID du gérant :", req.session.user.idGerant);
-        return (res.status(200).json({
-            connecter: true,
-            user: req.session.user,
-            message: MESSAGE_CONNECTER,
-            bateau: BateauControl.getBateauByIdGerant.bind(BateauControl)
-        }));
+        BateauControl.getBateauByIdGerant(req, res);
     } else {
         // Si l'utilisateur n'est pas connecté, on renvoie un statut 401 (Unauthorized)
         return res.status(401).json({

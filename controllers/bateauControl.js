@@ -60,10 +60,19 @@ class BateauControl {
 
         this.bateau.getBateauByIdGerant(idGerant, (err, data) => {
             if (err) {
-                return [];
+                return res.status(500).json({
+                    connecter: true,
+                    user: req.session.user,
+                    message: "Erreur lors de la récupération des bateaux",
+                    bateau: []
+                });
             }
-            console.log("Bateaux récupérés :", data);
-            return data;
+            return res.status(200).json({
+                connecter: true,
+                user: req.session.user,
+                message: "Bateaux récupérés avec succès",
+                bateau: data
+            });
         });
     }
 

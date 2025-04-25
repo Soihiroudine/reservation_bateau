@@ -24,7 +24,6 @@ const Utilisateur = () => {
                 // Si l'utilisateur est connecté, on récupère les bateaux du gérant
                 setUser(response.data.user);
                 setBateau(response?.data?.bateau); // On récupère les bateaux du gérant
-                console.log("Bateaux récupérés :", response?.data?.bateau);
                 // setReservations(response.data.reservations); // On récupère les réservations du gérant
             })
             .catch(error => {
@@ -69,12 +68,30 @@ const Utilisateur = () => {
                     <div className="listeBateau">
                         <h2>Liste de vos bateaux</h2>
                         {/* Afficher la liste des bateaux ici */}
-                        {console.log("Bateaux récupérés :", bateau)}
 
                         {Array.isArray(bateau) && bateau.length > 0 ? (
-                            <ul>
-                                {bateau.map(b => <li key={b.idBateau}>{b.nomBateau}</li>)}
-                            </ul>
+                            <table className="tableauBateau">
+                                <thead>
+                                    <tr>
+                                        <th>Nom</th>
+                                        <th>places</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {bateau.map(b => (
+                                        <tr key={b.idBateau}>
+                                            <td>{b.nomBateau}</td>
+                                            <td>{b.nbPlace}</td>
+                                            {/* <td>
+                                                <form action="/deleteBateau" method="post">
+                                                    <input type="hidden" name="id" value={b.idBateau} />
+                                                        <button className='annuler'>supprimer</button>
+                                                </form>
+                                            </td> */}
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
                         ) : (
                             <p>Vous n'avez pas encore de bateaux enregistrés.</p>
                         )}
@@ -82,6 +99,9 @@ const Utilisateur = () => {
 
 
                         <FormAjoutBateau /> {/* Formulaire d'ajout de bateau */}
+                    </div>
+
+                    <div className="listeReservation">
                     </div>
                 </div>
                 <h1>Bienvenue, {user.nomGerant}</h1>

@@ -28,7 +28,7 @@ const FormAjoutBateau = () => {
     // Fonction pour réinitialiser le formulaire
     const resetForm = () => {
         setNomBateau('');
-        setCapacite('');
+        setCapacite(0);
     };
 
     // Fonction pour gérer la soumission du formulaire
