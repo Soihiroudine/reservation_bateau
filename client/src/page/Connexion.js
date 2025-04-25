@@ -5,7 +5,6 @@ import FormConnexion from '../components/FormulaireConnexion';
 import logo from './../assets/logo.png';
 import { useNavigate } from 'react-router-dom';
 import Chargement from '../components/Spinner';
-import { notification } from "../components/ToastNotification";
 
 
 const Connexion = () => {
@@ -32,7 +31,7 @@ const Connexion = () => {
 
     useEffect(() => {
         if (Object.keys(user).length > 0 && !loading) {
-            navigate('/utilisateur'); // Redirige vers la page de profil   
+            navigate('/profil'); // Redirige vers la page de profil   
         }
     }, [loading, user, navigate]);
 

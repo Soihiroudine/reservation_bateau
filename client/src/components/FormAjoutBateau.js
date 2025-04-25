@@ -90,7 +90,7 @@ const FormAjoutBateau = () => {
             }
 
             setMessage(messageErreur);
-            notification(messageErreur, "error"); // 💥 Toast d'erreur
+            notification(message, "error"); // 💥 Toast d'erreur
         }
     }
 

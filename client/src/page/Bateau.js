@@ -8,7 +8,7 @@ import FormAjoutBateau from '../components/FormAjoutBateau';
 import { notification } from "../components/ToastNotification";
 import Chargement from '../components/Spinner';
 
-const Utilisateur = () => {
+const Bateau = () => {
 
     const [user, setUser] = useState({});
 
@@ -110,4 +110,4 @@ const Utilisateur = () => {
     }
 }
 
-export default Utilisateur;
+export default Bateau;

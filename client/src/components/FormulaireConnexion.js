@@ -32,7 +32,7 @@ const FormConnexion = () => {
                 notification("Connexion réussie 🎉", "success");
                 setMessage(messageServeur);
                 setTimeout(() => {
-                    navigate('/utilisateur'); // Redirige vers la page utilisateur après 2 secondes
+                    navigate('/profil'); // Redirige vers la page profil après 2 secondes
                 }
                     , 1000);
             }
@@ -57,7 +57,7 @@ const FormConnexion = () => {
                         messageErreur = "Ressource non trouvée.";
                         break;
                     case 500:
-                        messageErreur = "Erreur interne du serveur. Veuillez réessayer plus tard.";
+                        messageErreur = data?.message || "Erreur interne du serveur. Veuillez réessayer plus tard.";
                         break;
                     default:
                         messageErreur = data?.message || `Erreur ${status} inconnue.`;

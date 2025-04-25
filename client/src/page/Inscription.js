@@ -28,7 +28,7 @@ const Inscription = () => {
 
     useEffect(() => {
         if (Object.keys(user).length > 0 && !loading){
-            navigate('/utilisateur'); // Redirige vers la page de profil   
+            navigate('/profil'); // Redirige vers la page de profil   
         }
     }, [loading, user, navigate]);
     
