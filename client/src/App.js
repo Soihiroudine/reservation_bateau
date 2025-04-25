@@ -7,6 +7,7 @@ import Modal from 'react-modal';
 import Accueil from './page/Accueil';
 import Reservation from './page/Reservation';
 import Bateau from './page/Bateau';
+import ListeReservation from './page/ListeReservation';
 import Connexion from './page/Connexion';
 import Inscription from './page/Inscription';
 import Logout from './page/Logout';
@@ -26,6 +27,7 @@ function App() {
         <Route path="/" element={<Accueil />} />
         <Route path="/reservation" element={<Reservation />} />
         <Route path="/bateau" element={<Bateau />} />
+        <Route path='/ListeReservation' element={<ListeReservation />} /> {/* Redirection vers la page de réservation */}
         <Route path="/connexion" element={<Connexion />} />
         <Route path="/inscription" element={<Inscription />} />
         <Route path='/profil' element={<Profil />} /> {/* Redirection vers la page de profil */}

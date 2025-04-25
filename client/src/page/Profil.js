@@ -59,7 +59,7 @@ const Profil = () => {
 
                 <div className='bouton'>
                     <a href='/bateau'>Accés bateau</a>
-                    <a href='/reservation'>Accés réservation</a>
+                    <a href='/listeReservation'>Accés réservation</a>
                     <button>Modifier le mot de passe</button>
                 </div>
             </div>
