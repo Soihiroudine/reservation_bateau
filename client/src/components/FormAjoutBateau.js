@@ -36,13 +36,16 @@ const FormAjoutBateau = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const formData = new FormData();
-        formData.append('nomBateau', nomBateau);
-        formData.append('capacite', capacite);
+        const formData = {
+            nomBateau: nomBateau,
+            capacite: capacite
+        };
+
 
         try {
             const response = await axios.post('/api/utilisateur/ajout-bateau', formData, {
-                withCredentials: true});
+                withCredentials: true
+            });
 
             // const messageServeur = response.data.message;
 
@@ -54,9 +57,40 @@ const FormAjoutBateau = () => {
                 }, 1000);
             }
         } catch (error) {
-            const messageErreur = error?.response?.data?.message;
-            setMessage(messageErreur || "Erreur lors de l'ajout du bateau");
-            notification(message, "error"); // 💥 Toast d'erreur
+            let messageErreur = "Erreur lors de l'ajout du bateau";
+
+            if (error?.response) {
+                const { status, data } = error.response;
+
+                switch (status) {
+                    case 400:
+                        messageErreur = data?.message || "Requête invalide.";
+                        break;
+                    case 401:
+                        messageErreur = "Vous devez être connecté pour effectuer cette action.";
+                        break;
+                    case 403:
+                        messageErreur = "Vous n'avez pas les droits pour effectuer cette action.";
+                        break;
+                    case 404:
+                        messageErreur = "Ressource non trouvée.";
+                        break;
+                    case 500:
+                        messageErreur = "Erreur interne du serveur. Veuillez réessayer plus tard.";
+                        break;
+                    default:
+                        messageErreur = data?.message || `Erreur ${status} inconnue.`;
+                }
+            } else if (error?.request) {
+                // Requête faite mais pas de réponse
+                messageErreur = "Aucune réponse du serveur. Vérifiez votre connexion.";
+            } else {
+                // Erreur dans le setup de la requête
+                messageErreur = error.message || "Une erreur est survenue.";
+            }
+
+            setMessage(messageErreur);
+            notification(messageErreur, "error"); // 💥 Toast d'erreur
         }
     }
 
@@ -99,8 +133,8 @@ const FormAjoutBateau = () => {
                             />
                         </div>
                         <div className='bouton'>
-                            <button type="submit" className="btn btn-primary">Ajouter</button>
-                            <button type="button" onClick={closeModal} className="annuler">Annuler</button>
+                            <button type="submit">Ajouter</button>
+                            <button type="button" onClick={closeModal} className="annuler">Fermer</button>
                         </div>
                     </form>
                 </div>

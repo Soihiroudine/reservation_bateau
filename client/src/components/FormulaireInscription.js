@@ -35,71 +35,94 @@ const FormInscription = () => {
                 setTimeout(() => {
                     navigate('/connexion'); // Redirige vers la page de connexion
                 }
-                , 1000);
-                
-            } else if (message === "Gerant non ajouté") {
-                setMessage(reponse.data.message);
+                    , 1000);
 
-                notification(message, "warn"); // 💥 Toast d'erreur
-
-                setTimeout(() => {
-                    navigate('/inscription'); // Redirige vers la page d'inscription
-                }, 1000);
             }
         } catch (error) {
-            setMessage(error.message);
-            notification("Erreur lors de l'inscription : " + message, "error"); // 💥 Toast d'erreur
-            console.error(message);
+            let messageErreur = "Erreur lors de l'ajout du bateau";
+
+            if (error?.response) {
+                const { status, data } = error.response;
+
+                switch (status) {
+                    case 400:
+                        messageErreur = data?.message || "Requête invalide.";
+                        break;
+                    case 401:
+                        messageErreur = "Vous devez être connecté pour effectuer cette action.";
+                        break;
+                    case 403:
+                        messageErreur = "Vous n'avez pas les droits pour effectuer cette action.";
+                        break;
+                    case 404:
+                        messageErreur = "Ressource non trouvée.";
+                        break;
+                    case 500:
+                        messageErreur = "Erreur interne du serveur. Veuillez réessayer plus tard.";
+                        break;
+                    default:
+                        messageErreur = data?.message || `Erreur ${status} inconnue.`;
+                }
+            } else if (error?.request) {
+                // Requête faite mais pas de réponse
+                messageErreur = "Aucune réponse du serveur. Vérifiez votre connexion.";
+            } else {
+                // Erreur dans le setup de la requête
+                messageErreur = error.message || "Une erreur est survenue.";
+            }
+
+            setMessage(messageErreur);
+            notification(messageErreur, "error"); // 💥 Toast d'erreur
         }
-        
+
     }
 
     return (
         <>
-        <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="nom">Nom</label>
-                <input type='text'
-                    placeholder="Nom"
-                    id='nom' 
-                    name='nom'
-                    value={nom}
-                    required 
-                    onChange={(e) => setNom(e.target.value)} />
-            </div>
-            <div>
-                <label htmlFor="prenom">Prenom</label>
-                <input type='text' 
-                    placeholder="Prenom" 
-                    id='prenom' 
-                    name='prenom'
-                    vallue={prenom}
-                    required 
-                    onChange={(e) => setPrenom(e.target.value)} />
-            </div>
-            <div>
-                <label htmlFor="emailInscription">E-mail</label>
-                <input type='email' 
-                    placeholder="email" 
-                    id='emailInscription' 
-                    name='emailInscription'
-                    value={emailInscription} 
-                    required 
-                    onChange={(e) => setEmailInscription(e.target.value)} />
-            </div>
-            <div>
-                <label htmlFor="mdpInscription">Mot de passe</label>
-                <input type='password'
-                    placeholder="mot de passe"
-                    id='mdpInscription'
-                    name='mdpInscription'
-                    value={mdpInscription}
-                    required
-                    onChange={(e) => setMdpInscription(e.target.value)} />
-            </div>
-            <input type='submit' value="Envoyer" />
-        </form>
-        
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label htmlFor="nom">Nom</label>
+                    <input type='text'
+                        placeholder="Nom"
+                        id='nom'
+                        name='nom'
+                        value={nom}
+                        required
+                        onChange={(e) => setNom(e.target.value)} />
+                </div>
+                <div>
+                    <label htmlFor="prenom">Prenom</label>
+                    <input type='text'
+                        placeholder="Prenom"
+                        id='prenom'
+                        name='prenom'
+                        vallue={prenom}
+                        required
+                        onChange={(e) => setPrenom(e.target.value)} />
+                </div>
+                <div>
+                    <label htmlFor="emailInscription">E-mail</label>
+                    <input type='email'
+                        placeholder="email"
+                        id='emailInscription'
+                        name='emailInscription'
+                        value={emailInscription}
+                        required
+                        onChange={(e) => setEmailInscription(e.target.value)} />
+                </div>
+                <div>
+                    <label htmlFor="mdpInscription">Mot de passe</label>
+                    <input type='password'
+                        placeholder="mot de passe"
+                        id='mdpInscription'
+                        name='mdpInscription'
+                        value={mdpInscription}
+                        required
+                        onChange={(e) => setMdpInscription(e.target.value)} />
+                </div>
+                <input type='submit' value="Envoyer" />
+            </form>
+
         </>
     );
 }

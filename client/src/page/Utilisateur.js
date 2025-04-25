@@ -23,7 +23,7 @@ const Utilisateur = () => {
             .then(response => {
                 // Si l'utilisateur est connecté, on récupère les bateaux du gérant
                 setUser(response.data.user);
-                setBateau(response.data.bateau); // On récupère les bateaux du gérant
+                setBateau(response?.data?.bateau); // On récupère les bateaux du gérant
                 console.log("Bateaux récupérés :", response?.data?.bateau);
                 // setReservations(response.data.reservations); // On récupère les réservations du gérant
             })
@@ -69,6 +69,7 @@ const Utilisateur = () => {
                     <div className="listeBateau">
                         <h2>Liste de vos bateaux</h2>
                         {/* Afficher la liste des bateaux ici */}
+                        {console.log("Bateaux récupérés :", bateau)}
 
                         {Array.isArray(bateau) && bateau.length > 0 ? (
                             <ul>

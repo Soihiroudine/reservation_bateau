@@ -15,10 +15,9 @@ class BateauControl {
             });
         }
         
-        const nom = req.body.nomBateau;
-        const place = req.body.capacite;
+        const {nomBateau, capacite} = req.body;
 
-        if (!nom || !place) {
+        if (!nomBateau || !capacite) {
             return res.status(400).json({
                 connecter: true,
                 user: req.session.user,
@@ -28,7 +27,7 @@ class BateauControl {
 
         const idGerant = req.session.user.idGerant;
 
-        this.bateau.addBateau(nom, place, idGerant, (err, data) => {
+        this.bateau.addBateau(nomBateau, capacite, idGerant, (err, data) => {
             if (err) {
                 console.error("Erreur lors de l'ajout du bateau :", err);
                 return res.status(500).json({
@@ -38,7 +37,7 @@ class BateauControl {
                     bateau: []
                 });
             }
-            return res.status(201).json({
+            return res.status(200).json({
                 connecter: true,
                 user: req.session.user,
                 message: "Bateau ajouté avec succès.",
@@ -47,7 +46,7 @@ class BateauControl {
         });
     }
 
-    getBateauByIdGerant(req) {
+    getBateauByIdGerant(req, res) {
         if (!req.session.user) {
             return res.status(401).json({
                 connecter : false,
