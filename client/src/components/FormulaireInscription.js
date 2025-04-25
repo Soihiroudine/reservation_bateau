@@ -25,17 +25,15 @@ const FormInscription = () => {
 
         try {
             const reponse = await axios.post("/api/utilisateur/inscription", formDonnee);
-            setMessage(reponse.data.message);
 
             // Rediriger vers la page de connexion
-            if (message === "Gerant ajouté") {
+            if (reponse.status === 200) {
                 // Enregistrer l'utilisateur dans le localStorage
                 notification(message, "success"); // 💥 Toast de succès
 
                 setTimeout(() => {
                     navigate('/connexion'); // Redirige vers la page de connexion
-                }
-                    , 1000);
+                }, 1000);
 
             }
         } catch (error) {

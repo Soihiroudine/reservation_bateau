@@ -48,7 +48,7 @@ const FormConnexion = () => {
                         messageErreur = data?.message || "Requête invalide.";
                         break;
                     case 401:
-                        messageErreur = "Vous devez être connecté pour effectuer cette action.";
+                        messageErreur = data?.message || "Vous devez être connecté pour effectuer cette action.";
                         break;
                     case 403:
                         messageErreur = "Vous n'avez pas les droits pour effectuer cette action.";

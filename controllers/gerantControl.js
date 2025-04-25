@@ -28,13 +28,6 @@ class GerantControl {
                     user : {},
                     message: "Gerant non ajouté"
                 });
-            }else if (err.code === "ER_DUP_ENTRY") {
-                console.log("Email déjà utilisé");
-                return res.status(400).json({
-                    connecter : false,
-                    user : {},
-                    message: "Email déjà utilisé"
-                });
             }
             // On envoie un message de succès
             console.log("Gérant ajouté avec succès");

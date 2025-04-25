@@ -52,6 +52,7 @@ const Profil = () => {
                 <h1>Profil de l'utilisateur</h1>
                  <div className="profil-info">
                         <p><strong>Nom :</strong> {user.nomGerant}</p>
+                        <p><strong>Prénom :</strong> {user.prenomGerant}</p>
                         <p><strong>Email :</strong> {user.emailGerant}</p>
                         {/* Ajoutez d'autres informations utilisateur ici */}
                     </div>
