@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { notification } from "./ToastNotification";
+import InputPassword from './InputPassword';
 
 const FormConnexion = () => {
     const [email, setEmail] = useState('');
@@ -87,19 +88,16 @@ const FormConnexion = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)} />
             </div>
-            <div>
-                <label htmlFor="mdpConnexion">Mot de passe</label>
-                <input type='password'
-                    placeholder="mot de passe"
-                    id='mdpConnexion'
-                    name='mdpConnexion'
-                    required
-                    value={mdpConnexion}
-                    onChange={(e) => setMdpConnexion(e.target.value)} />
-            </div>
-
+                
+                <InputPassword
+                    classDiv="inputPassword"
+                    label="Mot de passe" 
+                    name="mdpConnexion" 
+                    value={mdpConnexion} 
+                    idInput="mdpConnexion" 
+                    onChange={(e) => setMdpConnexion(e.target.value)} 
+                />
             <input type='submit' value="Envoyer" />
-
         </form>
     );
 }

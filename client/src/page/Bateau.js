@@ -60,6 +60,7 @@ const Bateau = () => {
                 <Header>
                     <NavbarGerant nomUtilisateur={user.nomGerant} />
                 </Header>
+                <h1>Bienvenue, {user.nomGerant}</h1>
 
                 <div className="container">
 
@@ -104,7 +105,6 @@ const Bateau = () => {
                     <div className="listeReservation">
                     </div>
                 </div>
-                <h1>Bienvenue, {user.nomGerant}</h1>
             </div>
         );
     }

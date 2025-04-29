@@ -62,7 +62,17 @@
 }
 
 .sectionAutentification .gauche input::placeholder {
-    color: #d1cfcf;
+    color: #b1adad;
+}
+
+.sectionAutentification .gauche input[type="text"]:focus, 
+.sectionAutentification .gauche input[type="email"]:focus, 
+.sectionAutentification .gauche input[type="password"]:focus{
+    border-color: #004369;
+    outline: none;
+    box-shadow: 0 0 0 4px #fff,
+    0 0 0 8px rgba(0, 67, 105, 0.5);
+    background-color: #fff;
 }
 
 .sectionAutentification .gauche input[type="submit"] {

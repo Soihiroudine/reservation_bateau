@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { /* useEffect, */ useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import InputPassword from './InputPassword';
 import { notification } from "./ToastNotification";
 
 const FormInscription = () => {
@@ -108,16 +108,14 @@ const FormInscription = () => {
                         required
                         onChange={(e) => setEmailInscription(e.target.value)} />
                 </div>
-                <div>
-                    <label htmlFor="mdpInscription">Mot de passe</label>
-                    <input type='password'
-                        placeholder="mot de passe"
-                        id='mdpInscription'
-                        name='mdpInscription'
-                        value={mdpInscription}
-                        required
-                        onChange={(e) => setMdpInscription(e.target.value)} />
-                </div>
+                <InputPassword
+                    classDiv="inputPassword"
+                    label="Mot de passe" 
+                    name="mdpInscription" 
+                    value={mdpInscription} 
+                    idInput="mdpInscription" 
+                    onChange={(e) => setMdpInscription(e.target.value)} 
+                />
                 <input type='submit' value="Envoyer" />
             </form>
 

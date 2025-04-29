@@ -8,24 +8,19 @@ const MESSAGE_CONNECTER = "Utilisateur connecté";
 const MESSAGE_NON_CONNECTER = "Utilisateur non connecté";
 // route [ Racine utilisateur ]
 
-// Redirige vers la page de profil
-// router.get("/api/utilisateur", (req, res) => {
-//     res.redirect("/utilisateur");
-// });
-
 // route [ Connexion ]
 router.get("/api/utilisateur/connexion", (req, res) => {
-    if(req.session.user) {
+    if (req.session.user) {
         return res.status(200).json({
-            connecter : true,
-            user : req.session.user,
-            message : MESSAGE_CONNECTER
+            connecter: true,
+            user: req.session.user,
+            message: MESSAGE_CONNECTER
         });
     }
     return res.status(401).json({
-        connecter : false,
-        user : {},
-        message : MESSAGE_NON_CONNECTER
+        connecter: false,
+        user: {},
+        message: MESSAGE_NON_CONNECTER
     });
 });
 
@@ -35,17 +30,19 @@ router.post("/api/utilisateur/connexion",
 
 // route [ Inscription ]
 router.get("/api/utilisateur/inscription", (req, res) => {
-    if(req.session.user) {
+    if (req.session.user) {
+        console.log("Utilisateur Inscrit");
+        // Si l'utilisateur est connecté, on renvoie un statut 200 (OK) avec les informations de l'utilisateur
         return res.status(200).json({
-            connecter : true,
-            user : req.session.user,
-            message : MESSAGE_CONNECTER
+            connecter: true,
+            user: req.session.user,
+            message: MESSAGE_CONNECTER
         });
     }
     return res.status(401).json({
-        connecter : false,
-        user : {},
-        message : MESSAGE_NON_CONNECTER
+        connecter: false,
+        user: {},
+        message: MESSAGE_NON_CONNECTER
     });
 });
 
@@ -59,34 +56,41 @@ router.get("/api/utilisateur/deconnexion", (req, res) => {
     req.session.destroy((err) => {
         if (err) {
             return res.status(500).json({
-                connecter : false,
-                user : {},
-                message : 'Erreur lors de la déconnexion.'
+                connecter: false,
+                user: {},
+                message: 'Erreur lors de la déconnexion.'
             });
         }
-        res.status(200).json({
-            connecter : false,
-            user : {},
-            message : "Déconnexion réussie"
-        });
+        else {
+            console.log("Session détruite avec succès");
+            return res.status(200).json({
+                connecter: false,
+                user: {},
+                message: "Déconnexion réussie"
+            });
+        }
     });
 
 });
 
 // route [ Profil ]
 router.get("/api/utilisateur/profil", (req, res) => {
-    if(req.session.user) {
+    if (req.session.user) {
+        console.log("Utilisateur connecté");
         return res.status(200).json({
-            connecter : true,
-            user : req.session.user,
-            message : MESSAGE_CONNECTER
+            connecter: true,
+            user: req.session.user,
+            message: MESSAGE_CONNECTER
         });
     }
+    else {
+        console.log("Utilisateur non connecté");
     return res.status(401).json({
-        connecter : false, 
-        user : {},
-        message : MESSAGE_NON_CONNECTER
+        connecter: false,
+        user: {},
+        message: MESSAGE_NON_CONNECTER
     });
+    }
 });
 
 router.get("/api/utilisateur/affichage", (req, res) => {
@@ -103,7 +107,7 @@ router.get("/api/utilisateur/affichage", (req, res) => {
         });
     }
 });
-  
+
 router.post("/api/utilisateur/ajout-bateau",
     BateauControl.addBateau.bind(BateauControl)
 );
