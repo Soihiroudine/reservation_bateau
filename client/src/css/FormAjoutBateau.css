@@ -12,7 +12,7 @@ button {
     border-bottom: 3px solid transparent;
 }
 
-button:hover {
+button:hover, input[type="submit"]:hover {
     background-color: #f8f9fa;
     color: #004369;
     border-radius: 0.2em 0.2em 0 0;
@@ -21,7 +21,7 @@ button:hover {
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
-button:active {
+button:active, input[type="submit"]:active {
     transform: scale(0.95);
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }

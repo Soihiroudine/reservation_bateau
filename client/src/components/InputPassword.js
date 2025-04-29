@@ -12,9 +12,9 @@ const InputPassword = ({ classDiv, label, name, value, idInput, onChange }) => {
     };
 
     return (
-        <div className={classDiv}>
+        <div>
             <label htmlFor={name}>{label}</label>
-            <div className="inputPassword">
+            <div className={classDiv}>
                 <input
                     type={showPassword ? "text" : "password"}
                     name={name}
