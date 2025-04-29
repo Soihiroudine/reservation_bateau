@@ -24,11 +24,11 @@ const InputPassword = ({ classDiv, label, name, value, idInput, onChange }) => {
                     placeholder="mot de passe"
                     required
                 />
-                <img src={showPassword ? openEye : closedEye} alt="eye" onClick={togglePasswordVisibility} className="eyeIcon" />
-
-                {/* <button type="button" onClick={togglePasswordVisibility}>
-        {showPassword ? "Hide" : "Show"}
-      </button> */}
+                <img
+                    src={showPassword ? openEye : closedEye}
+                    alt="eye"
+                    onClick={togglePasswordVisibility}
+                    className="eyeIcon" />
             </div>
         </div>
     );
