@@ -5,6 +5,7 @@ import NavbarGerant from '../components/NavbarGerant';
 import { notification } from '../components/ToastNotification';
 import { useNavigate } from 'react-router-dom';
 import Chargement from '../components/Spinner';
+import '../css/profil.css'; // Assurez-vous d'importer le fichier CSS pour le style
 
 const Profil = () => {
     const [user, setUser] = useState({});
@@ -48,7 +49,7 @@ const Profil = () => {
             <Header>
                 <NavbarGerant nomUtilisateur={user.nomGerant} />
             </Header>
-            <div className="container">
+            <div className="profil">
                 <h1>Profil de l'utilisateur</h1>
                 <div className="profil-info">
                         <p><strong>Nom :</strong> {user.nomGerant}</p>
@@ -57,10 +58,11 @@ const Profil = () => {
                         {/* Ajoutez d'autres informations utilisateur ici */}
                 </div>
 
-                <div className='bouton'>
+                <button className='modifMDP'>Modifier le mot de passe</button>
+
+                <div className='lien'>
                     <a href='/bateau'>Accés bateau</a>
                     <a href='/listeReservation'>Accés réservation</a>
-                    <button>Modifier le mot de passe</button>
                 </div>
             </div>
         </div>

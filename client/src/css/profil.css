@@ -1,0 +1,52 @@
+.profil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+}
+
+.profil h1 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 1em;
+}
+
+.profil .profil-info {
+    background-color: #faf8f8;
+    padding: 2em;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.profil .profil-info p {
+    font-size: 1.2em;
+    color: #343;
+}
+
+.profil .modifMDP{
+    margin: 1em;
+}
+
+.profil .lien {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.profil .lien a{
+    text-decoration: none;
+    border-bottom: 5px solid transparent;
+    color: #333;
+    margin: 1em;
+    padding: 0.5em 2.1em;
+    font-size: 1.5em;
+    transition: background-color 0.3s ease;
+}
+
+.profil .lien a:hover {
+    background-color: #f0f0f0;
+    color: #02436a;
+    border-bottom: 5px solid #02436a;
+}
