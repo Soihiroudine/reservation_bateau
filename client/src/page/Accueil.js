@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import NavbarDafault from '../components/Navbar';
 import Header from '../components/Header';
-import bateau from "../assets/image acceuil/bateau.jpeg";
-import drapeau from "../assets/image acceuil/drapeau.png";
-import yacht from "../assets/image acceuil/yacht.jpeg";
-import tortue from "../assets/image acceuil/tortue.jpeg";
-import ilot from "../assets/image acceuil/ilot.jpg";
-import ylang from "../assets/image acceuil/ylang2.jpg";
-import Maki from "../assets/image acceuil/Maki.jpeg";
+import bateau from "./../assets/image_acceuil/bateau.jpeg";
+// import drapeau from "./../assets/image_acceuil/drapeau.png";
+import yacht from "./../assets/image_acceuil/yacht.jpeg";
+import tortue from "./../assets/image_acceuil/tortue.jpeg";
+import ilot from "./../assets/image_acceuil/ilot.jpg";
+import ylang from "./../assets/image_acceuil/ylang2.jpg";
+import Maki from "./../assets/image_acceuil/Maki.jpeg";
 
 const Accueil = () => {
 
@@ -40,7 +40,7 @@ const Accueil = () => {
         <div id="precedent" onclick="ChangeSlide(-1)"></div>
         <div id="suivant" onclick="ChangeSlide(1)"></div>
 
-        <img src={drapeau} alt="La forêt de peupliers" id="slide"/>
+        <img src={"drapeau"} alt="La forêt de peupliers" id="slide"/>
         <div id="precedent" onclick="ChangeSlide(-1)"></div>
         <div id="suivant" onclick="ChangeSlide(1)"></div>
     </div>
