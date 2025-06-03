@@ -3,7 +3,7 @@ import axios from 'axios';
 import NavbarDafault from '../components/Navbar';
 import Header from '../components/Header';
 import bateau from "./../assets/image_acceuil/bateau.jpeg";
-// import drapeau from "./../assets/image_acceuil/drapeau.png";
+import drapeau from "./../assets/image_acceuil/drapeau.png";
 import yacht from "./../assets/image_acceuil/yacht.jpeg";
 import tortue from "./../assets/image_acceuil/tortue.jpeg";
 import ilot from "./../assets/image_acceuil/ilot.jpg";
@@ -40,7 +40,7 @@ const Accueil = () => {
         <div id="precedent" onclick="ChangeSlide(-1)"></div>
         <div id="suivant" onclick="ChangeSlide(1)"></div>
 
-        <img src={"drapeau"} alt="La forêt de peupliers" id="slide"/>
+        <img src={drapeau} alt="La forêt de peupliers" id="slide"/>
         <div id="precedent" onclick="ChangeSlide(-1)"></div>
         <div id="suivant" onclick="ChangeSlide(1)"></div>
     </div>
