@@ -4,6 +4,11 @@ const mysql = require("mysql2");
 // Permet de recuperer les informations du fichier .env
 require("dotenv").config();
 
+
+/**
+  * Les valeurs de host, user, password, port et database sont exporter depuis le
+  * fichier .env
+*/
 const connection = mysql.createConnection({
     host: process.env.host,
     user: process.env.user,
@@ -14,17 +19,13 @@ const connection = mysql.createConnection({
 
 // Vérifier si la connexion est réussie
 
-try {
-  connection.connect((err) => {
+connection.connect((err) => {
     if (err) {
-      console.error('Erreur de connexion à la base de données : ' + err.stack);
-      return;
+        console.error('Erreur de connexion à la base de données : ' + err.stack);
+        return;
     } 
     console.log('Connecté à la base de données');
-  });
-} catch (error) {
-  
-} 
+});
 
 
 module.exports = connection;
