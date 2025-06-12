@@ -1,6 +1,14 @@
 const fs = require("fs");
 const connexionDB = require("./db");
 
+/**
+ * Fonction qui prend en paramètre un fichier
+ * 
+ * Il exécute les commandes SQL
+ * 
+ * Attention, ne pas utilisé n'importe quel fichier car peut supprimer les donnés des tables
+ * - Donc après utilisation il faut enlevé l'appèl de la fonction
+ */
 const executionFichierPourBDD = (cheminDeFichier) => {
     fs.readFile(cheminDeFichier, 'utf8', (err, data) => {
         if (err) {

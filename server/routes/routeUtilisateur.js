@@ -28,7 +28,8 @@ router.post("/api/utilisateur/connexion",
     gerantControl.connectionGerant.bind(gerantControl)
 );
 
-// route [ Inscription ]
+
+// ---------- route [ Inscription ] ----------
 router.get("/api/utilisateur/inscription", (req, res) => {
     if (req.session.user) {
         console.log("Utilisateur Inscrit");
@@ -50,7 +51,8 @@ router.post("/api/utilisateur/inscription",
     gerantControl.addGerant.bind(gerantControl)
 );
 
-// route [ Deconnexion ]
+
+// ---------- route [ Deconnexion ] ----------
 router.get("/api/utilisateur/deconnexion", (req, res) => {
     // Route pour détruire la session
     req.session.destroy((err) => {
@@ -73,7 +75,7 @@ router.get("/api/utilisateur/deconnexion", (req, res) => {
 
 });
 
-// route [ Profil ]
+// ---------- route [ Profil ] ----------
 router.get("/api/utilisateur/profil", (req, res) => {
     if (req.session.user) {
         console.log("Utilisateur connecté");
