@@ -5,6 +5,7 @@ CREATE DATABASE IF NOT EXISTS sortie_bateau;
 USE sortie_bateau; 
 
 -- On va y ajouter des table
+
 CREATE TABLE IF NOT EXISTS client (
     idClient INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     nomClient VARCHAR(100) NOT NULL,

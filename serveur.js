@@ -6,7 +6,7 @@ require('dotenv').config()
 const app = require("./app.js");
  
 // On créer un port
-const PORT = process.env.PORT_SERVEUR;
+const PORT = process.env.PORT_SERVEUR || 5000;
 
 // On modifie le port de l'application avec la valeur du PORT
 app.set("port", PORT);
