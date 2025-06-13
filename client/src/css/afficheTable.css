@@ -51,10 +51,9 @@ tr {
 }
 
 .table-row:hover {
-  background-color: #a4c7de;
+  background-color: #e1f9ff;
   box-shadow: 0px 2px 16px 0px rgba(1, 10, 16, 0.15);
   cursor: pointer;
-  color: #ffffff;
   transition: background-color 0.2s, box-shadow 0.2s;
 }
 
