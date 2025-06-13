@@ -1,3 +1,12 @@
+h1 {
+  margin: 1em;
+}
+
+h1 span {
+  color: #02436a;
+  text-decoration: underline;
+}
+
 .container {
   max-width: 1000px;
   margin-left: auto;
@@ -7,70 +16,56 @@
 }
 
 .container h2 {
-  font-size: 26px;
-  margin: 20px 0;
+  font-size: 2.1em;
+  margin: 1.8em 0;
   text-align: center;
-  small {
-    font-size: 0.5em;
-  }
 }
 
 .responsive-table {
-  tr {
-    border-radius: 3px;
-    padding: 25px 30px;
+  width: 100%;
+}
+
+tr {
+    border-radius: 0.1em;
+    padding: 1em 1.5em;
+    margin-bottom: 2em;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 25px;
-  }
-  .table-header {
-    background-color: #95A5A6;
-    font-size: 14px;
+    align-items: center;
+}
+
+.table-header {
+    background-color: #02436a;
+    color: #ffffff;
+    font-size: 0.9em;
     text-transform: uppercase;
     letter-spacing: 0.03em;
-  }
-  .table-row {
+    
+}
+
+.table-row {
     background-color: #ffffff;
     box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1);
-  }
-  .col-1 {
-    flex-basis: 10%;
-  }
-  .col-2 {
-    flex-basis: 40%;
-  }
-  .col-3 {
-    flex-basis: 25%;
-  }
-  .col-4 {
-    flex-basis: 25%;
-  }
-  
-  @media all and (max-width: 767px) {
-    .table-header {
-      display: none;
-    }
-    .table-row{
-      
-    }
-    li {
-      display: block;
-    }
-    .col {
-      
-      flex-basis: 100%;
-      
-    }
-    .col {
-      display: flex;
-      padding: 10px 0;
-      &:before {
-        color: #6C7A89;
-        padding-right: 10px;
-        content: attr(data-label);
-        flex-basis: 50%;
-        text-align: right;
-      }
-    }
-  }
+    text-align: center;
+}
+
+.table-row:hover {
+  background-color: #a4c7de;
+  box-shadow: 0px 2px 16px 0px rgba(1, 10, 16, 0.15);
+  cursor: pointer;
+  color: #ffffff;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.col-1 {
+  flex-basis: 20%;
+}
+
+.col-2 {
+  flex-basis: 10%;
+}
+
+.col-3 {
+  flex-basis: 20%;
 }

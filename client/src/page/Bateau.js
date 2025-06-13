@@ -61,7 +61,7 @@ const Bateau = () => {
                 <Header>
                     <NavbarGerant nomUtilisateur={user.nomGerant} />
                 </Header>
-                <h1>Bienvenue, {user.nomGerant}</h1>
+                <h1>Bienvenue, <span>{user.nomGerant}</span></h1>
 
                 <div className="container">
 
@@ -75,21 +75,22 @@ const Bateau = () => {
                             <table className="responsive-table">
                                 <thead>
                                     <tr className="table-header">
-                                        <th className='col'>Nom</th>
-                                        <th className='col'>places</th>
+                                        <th className='col-1'>Nom</th>
+                                        <th className='col-2'>places</th>
+                                        <th className='col-3'>supprimer</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {bateau.map(b => (
                                         <tr key={b.idBateau}  className='table-row'>
-                                            <td>{b.nomBateau}</td>
-                                            <td>{b.nbPlace}</td>
-                                            {/* <td>
+                                            <td className='col-1'>{b.nomBateau}</td>
+                                            <td className='col-2'>{b.nbPlace}</td>
+                                            <td className='col-3'>
                                                 <form action="/deleteBateau" method="post">
                                                     <input type="hidden" name="id" value={b.idBateau} />
                                                         <button className='annuler'>supprimer</button>
                                                 </form>
-                                            </td> */}
+                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>
