@@ -103,6 +103,43 @@ class BateauControl {
         });
     }
 
+    updateBateau(req, res) {
+        if (!req.session.user) {
+            return res.status(401).json({
+                connecter: false,
+                user: {},
+                message: "Utilisateur non connecté",
+            });
+        }
+
+        const idBateau = req.params.idBateau;
+        const { nomBateau, capacite } = req.body;
+
+        if (!nomBateau || !capacite) {
+            return res.status(400).json({
+                connecter: true,
+                user: req.session.user,
+                message: "Nom du bateau ou capacité manquante",
+            });
+        }
+
+        this.bateau.updateBateau(idBateau, nomBateau, capacite, (err, data) => {
+            if (err) {
+                console.error("Erreur lors de la mise à jour du bateau :", err);
+                return res.status(500).json({
+                    connecter: true,
+                    user: req.session.user,
+                    message: "Erreur lors de la mise à jour du bateau.",
+                });
+            }
+            return res.status(200).json({
+                connecter: true,
+                user: req.session.user,
+                message: "Bateau mis à jour avec succès.",
+            });
+        });
+    }
+
 }
 
 module.exports = new BateauControl;

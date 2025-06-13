@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import FormAjoutBateau from '../components/FormAjoutBateau';
 import { notification } from "../components/ToastNotification";
 import DeleteBateauForm from '../components/DeleteBateauForm'; // Assurez-vous que ce chemin est correct
+import ModifierBateau from '../components/ModifierBateauForm'; // Assurez-vous que ce chemin est correct
 import Chargement from '../components/Spinner';
 import '../css/afficheTable.css'
 
@@ -77,8 +78,9 @@ const Bateau = () => {
                                 <thead>
                                     <tr className="table-header">
                                         <th className='col-1'>Nom</th>
-                                        <th className='col-2'>places</th>
-                                        <th className='col-3'>supprimer</th>
+                                        <th className='col-2'>Places</th>
+                                        <th className='col-3'>Modifier</th>
+                                        <th className='col-4'>Supprimer</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -87,6 +89,9 @@ const Bateau = () => {
                                             <td className='col-1'>{b.nomBateau}</td>
                                             <td className='col-2'>{b.nbPlace}</td>
                                             <td className='col-3'>
+                                                <ModifierBateau idBateau={b.idBateau} nom={b.nomBateau} capaciteBateau={b.nbPlace} />
+                                            </td>
+                                            <td className='col-4'>
                                                 <DeleteBateauForm idBateau={b.idBateau} /> {/* Formulaire de suppression de bateau */}
                                             </td>
                                         </tr>
@@ -96,8 +101,6 @@ const Bateau = () => {
                         ) : (
                             <p className='tableauVide'>Vous n'avez pas encore de bateaux enregistrés.</p>
                         )}
-
-
 
                         <FormAjoutBateau /> {/* Formulaire d'ajout de bateau */}
                     </div>
