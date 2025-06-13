@@ -69,3 +69,12 @@ tr {
 .col-3 {
   flex-basis: 20%;
 }
+
+.tableauVide {
+  text-align: center;
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #02436a;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}

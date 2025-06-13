@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { notification } from "./ToastNotification";
 import Modal from 'react-modal';
@@ -9,7 +8,6 @@ const FormAjoutBateau = () => {
     const [nomBateau, setNomBateau] = useState('');
     const [capacite, setCapacite] = useState(0);
     const [message, setMessage] = useState('');
-    const navigate = useNavigate(); // Hook de React Router pour la redirection
 
     // État pour gérer l'ouverture et la fermeture de la modale
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -53,7 +51,7 @@ const FormAjoutBateau = () => {
                 notification("Bateau ajouté avec succès 🎉", "success");
                 closeModal(); // Fermer la modale après l'ajout réussi
                 setTimeout(() => {
-                    navigate('/bateau'); // Redirige vers la page bateau après 1 secondes
+                    window.location.reload(); // Rafraîchir la page après la suppression
                 }, 1000);
             }
         } catch (error) {

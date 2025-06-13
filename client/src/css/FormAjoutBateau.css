@@ -1,3 +1,9 @@
+#formAjoutBateau {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 button {
     cursor: pointer;
     padding: 0.5em 0.7em;

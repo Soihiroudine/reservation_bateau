@@ -94,7 +94,7 @@ const Bateau = () => {
                                 </tbody>
                             </table>
                         ) : (
-                            <p>Vous n'avez pas encore de bateaux enregistrés.</p>
+                            <p className='tableauVide'>Vous n'avez pas encore de bateaux enregistrés.</p>
                         )}
 
 

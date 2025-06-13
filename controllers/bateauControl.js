@@ -14,8 +14,8 @@ class BateauControl {
                 message: "Utilisateur non connecté",
             });
         }
-        
-        const {nomBateau, capacite} = req.body;
+
+        const { nomBateau, capacite } = req.body;
 
         if (!nomBateau || !capacite) {
             return res.status(400).json({
@@ -49,10 +49,10 @@ class BateauControl {
     getBateauByIdGerant(req, res) {
         if (!req.session.user) {
             return res.status(401).json({
-                connecter : false,
-                user : {},
-                message : "Utilisateur non connecté",
-                bateau : []
+                connecter: false,
+                user: {},
+                message: "Utilisateur non connecté",
+                bateau: []
             });
         }
 
@@ -72,6 +72,33 @@ class BateauControl {
                 user: req.session.user,
                 message: "Bateaux récupérés avec succès",
                 bateau: data
+            });
+        });
+    }
+
+    deleteBateau = (req, res) => {
+        if (!req.session.user) {
+            return res.status(401).json({
+                connecter: false,
+                user: {},
+                message: "Utilisateur non connecté",
+            });
+        }
+
+        const idBateau = req.params.idBateau;
+
+        this.bateau.deleteBateau(idBateau, (err, data) => {
+            if (err) {
+                return res.status(500).json({
+                    connecter: true,
+                    user: req.session.user,
+                    message: "Erreur lors de la suppression du bateau",
+                });
+            }
+            return res.status(200).json({
+                connecter: true,
+                user: req.session.user,
+                message: "Bateau supprimé avec succès",
             });
         });
     }

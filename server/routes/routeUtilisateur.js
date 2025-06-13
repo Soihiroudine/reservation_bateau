@@ -114,5 +114,9 @@ router.post("/api/utilisateur/ajout-bateau",
     BateauControl.addBateau.bind(BateauControl)
 );
 
+router.delete("/api/utilisateur/delete-bateau/:idBateau",
+    BateauControl.deleteBateau.bind(BateauControl)
+);
+
 
 module.exports = router;
