@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import FormAjoutBateau from '../components/FormAjoutBateau';
 import { notification } from "../components/ToastNotification";
 import Chargement from '../components/Spinner';
+import '../css/afficheTable.css'
 
 const Bateau = () => {
 
@@ -71,16 +72,16 @@ const Bateau = () => {
                         {/* Afficher la liste des bateaux ici */}
 
                         {Array.isArray(bateau) && bateau.length > 0 ? (
-                            <table className="tableauBateau">
+                            <table className="responsive-table">
                                 <thead>
-                                    <tr>
-                                        <th>Nom</th>
-                                        <th>places</th>
+                                    <tr className="table-header">
+                                        <th className='col'>Nom</th>
+                                        <th className='col'>places</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {bateau.map(b => (
-                                        <tr key={b.idBateau}>
+                                        <tr key={b.idBateau}  className='table-row'>
                                             <td>{b.nomBateau}</td>
                                             <td>{b.nbPlace}</td>
                                             {/* <td>
