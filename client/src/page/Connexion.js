@@ -36,7 +36,7 @@ const Connexion = () => {
     }, [loading, user, navigate]);
 
     if (loading) {
-        <Chargement />; // ou un spinner
+        <Chargement size={60} color="#ff9900" text="Veuillez patienter..." />
     }
 
     return (

@@ -6,6 +6,7 @@ import NavbarGerant from '../components/NavbarGerant';
 import { useNavigate } from 'react-router-dom';
 import FormAjoutBateau from '../components/FormAjoutBateau';
 import { notification } from "../components/ToastNotification";
+import DeleteBateauForm from '../components/DeleteBateauForm'; // Assurez-vous que ce chemin est correct
 import Chargement from '../components/Spinner';
 import '../css/afficheTable.css'
 
@@ -53,7 +54,7 @@ const Bateau = () => {
 
 
     if (!loading && (!user || !user.idGerant)) {
-        <Chargement /> // ou un spinner
+        <Chargement size={60} color="#ff9900" text="Veuillez patienter..." />
     } else {
         return (
 
@@ -86,10 +87,7 @@ const Bateau = () => {
                                             <td className='col-1'>{b.nomBateau}</td>
                                             <td className='col-2'>{b.nbPlace}</td>
                                             <td className='col-3'>
-                                                <form action="/deleteBateau" method="post">
-                                                    <input type="hidden" name="id" value={b.idBateau} />
-                                                        <button className='annuler'>supprimer</button>
-                                                </form>
+                                                <DeleteBateauForm idBateau={b.idBateau} /> {/* Formulaire de suppression de bateau */}
                                             </td>
                                         </tr>
                                     ))}

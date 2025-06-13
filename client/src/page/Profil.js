@@ -42,7 +42,7 @@ const Profil = () => {
     }, [loading, user, navigate]);
 
     if (!loading && (!user || !user.idGerant)) {
-        <Chargement />; // ou un spinner
+        <Chargement size={60} color="#ff9900" text="Veuillez patienter..." />
     } else {
     return (
         <div>
