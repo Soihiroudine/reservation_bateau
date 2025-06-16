@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(cors({
     origin: 'http://localhost:3000', // Remplacez par l'URL de votre frontend
     credentials: true, // Autorise les cookies et les en-têtes d'autorisation
-    methods: ['GET', 'POST'] // Méthodes autorisées
+    methods: ['GET', 'POST', 'PUT', 'DELETE'] // Méthodes autorisées
 }));
 
 // app.use(express.json());
