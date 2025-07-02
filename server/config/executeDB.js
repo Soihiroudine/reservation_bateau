@@ -22,9 +22,13 @@ const executionFichierPourBDD = (cheminDeFichier) => {
         // Exécuter chaque ligne
         let lineIndex = 0;
 
+        // Fonction récursive pour exécuter chaque ligne
         function executeNextLine() {
             if (lineIndex < lines.length) {
+                // trim : Supprimer les espaces au début et à la fin de la ligne
+                // Vérifier si la ligne n'est pas vide
                 const line = lines[lineIndex].trim();
+                
                 if (line) {  // Vérifie si la ligne n'est pas vide
                     connexionDB.query(line, (error, results) => {
                         if (error) {
