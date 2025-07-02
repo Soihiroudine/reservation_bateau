@@ -41,7 +41,7 @@ const ModifierBateau = ({ idBateau, nom, capaciteBateau }) => {
 
 
         try {
-            const response = await axios.put(`/api/utilisateur/modifier-bateau/${idBateau}`, formData, {
+            const response = await axios.put(`/api/utilisateur/bateau/${idBateau}`, formData, {
                 withCredentials: true
             });
 

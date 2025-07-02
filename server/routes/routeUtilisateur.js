@@ -110,15 +110,15 @@ router.get("/api/utilisateur/affichage", (req, res) => {
     }
 });
 
-router.post("/api/utilisateur/ajout-bateau",
+router.post("/api/utilisateur/bateau",
     BateauControl.addBateau.bind(BateauControl)
 );
 
-router.delete("/api/utilisateur/delete-bateau/:idBateau",
+router.delete("/api/utilisateur/bateau/:idBateau",
     BateauControl.deleteBateau.bind(BateauControl)
 );
 
-router.put("/api/utilisateur/modifier-bateau/:idBateau",
+router.put("/api/utilisateur/bateau/:idBateau",
     BateauControl.updateBateau.bind(BateauControl)
 );
 

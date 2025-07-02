@@ -7,7 +7,7 @@ function DeleteBateauForm({ idBateau }) {
     e.preventDefault();
 
     try {
-      const response = await axios.delete(`/api/utilisateur/delete-bateau/${idBateau}`,
+      const response = await axios.delete(`/api/utilisateur/bateau/${idBateau}`,
         // Utilisation de l'URLSearchParams pour envoyer les données
       );
 

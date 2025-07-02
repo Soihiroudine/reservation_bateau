@@ -41,7 +41,7 @@ const FormAjoutBateau = () => {
 
 
         try {
-            const response = await axios.post('/api/utilisateur/ajout-bateau', formData, {
+            const response = await axios.post('/api/utilisateur/bateau', formData, {
                 withCredentials: true
             });
 
