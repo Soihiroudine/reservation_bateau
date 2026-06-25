@@ -1,6 +1,10 @@
+// Appelons le module fs pour lire le fichier SQL
 const fs = require("fs");
+
+// On recupère la connexion à la base de données depuis le fichier db.js
 const connexionDB = require("./db");
 
+// Fonction pour exécuter les commandes SQL à partir d'un fichier
 const executionFichierPourBDD = (cheminDeFichier) => {
     fs.readFile(cheminDeFichier, 'utf8', (err, data) => {
         if (err) {
@@ -14,6 +18,7 @@ const executionFichierPourBDD = (cheminDeFichier) => {
         // Exécuter chaque ligne
         let lineIndex = 0;
 
+        // Fonction récursive pour exécuter les lignes une par une
         function executeNextLine() {
             if (lineIndex < lines.length) {
                 const line = lines[lineIndex].trim();
@@ -29,10 +34,12 @@ const executionFichierPourBDD = (cheminDeFichier) => {
                         executeNextLine(); // Exécuter la ligne suivante
                     });
                 } else {
+                    // Si la ligne est vide, passer à la suivante
                     lineIndex++;
                     executeNextLine(); // Ignorer les lignes vides
                 }
             } else {
+                // Toutes les lignes ont été exécutées
                 connexionDB.end();  // Fermer la connexion une fois que toutes les lignes sont exécutées
                 console.log("Toutes les commandes SQL ont été exécutées.");
             }
@@ -42,4 +49,5 @@ const executionFichierPourBDD = (cheminDeFichier) => {
     });
 }
 
+// Exporter la fonction pour l'utiliser dans d'autres fichiers
 module.exports = executionFichierPourBDD;
